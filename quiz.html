@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prepositions Mission | Sentence Quest</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#e0f2fe,#f8fafc,#fef3c7);
+  color:#17324d;
+  min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+  background:linear-gradient(135deg,#075985,#0284c7);
+  color:white;
+  padding:14px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-size:20px;
+  font-weight:900;
+}
+
+.back-btn{
+  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.15);
+  color:white;
+  padding:9px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* MAIN */
+
+.wrapper{
+  max-width:1000px;
+  margin:auto;
+  padding:25px;
+}
+
+/* TOP INFO */
+
+.mission-title{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.badge{
+  display:inline-block;
+  background:#dcfce7;
+  color:#166534;
+  padding:7px 14px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.mission-title h1{
+  font-size:34px;
+  color:#075985;
+}
+
+.mission-title p{
+  color:#64748b;
+  margin-top:7px;
+}
+
+/* PROGRESS */
+
+.progress-info{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:7px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.progress{
+  height:13px;
+  background:#dbeafe;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+
+.progress-bar{
+  height:100%;
+  width:20%;
+  background:linear-gradient(90deg,#0ea5e9,#22c55e);
+  transition:.4s;
+}
+
+/* QUIZ CARD */
+
+.quiz-card{
+  background:white;
+  border-radius:24px;
+  padding:25px;
+  box-shadow:0 10px 30px rgba(15,23,42,.12);
+}
+
+/* LEVEL */
+
+.level-label{
+  text-align:center;
+  color:#0284c7;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom:5px;
+}
+
+.question{
+  text-align:center;
+  font-size:26px;
+  margin-bottom:20px;
+}
+
+/* BIG PICTURE */
+
+.picture{
+  width:100%;
+  min-height:330px;
+  border-radius:20px;
+  background:linear-gradient(#bae6fd 0 65%,#bbf7d0 65%);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:25px;
+}
+
+/* SCENE */
+
+.table{
+  width:300px;
+  height:25px;
+  background:#92400e;
+  position:absolute;
+  bottom:105px;
+  border-radius:7px;
+}
+
+.leg{
+  width:18px;
+  height:100px;
+  background:#78350f;
+  position:absolute;
+  bottom:5px;
+}
+
+.leg.left{
+  left:35px;
+}
+
+.leg.right{
+  right:35px;
+}
+
+.cat{
+  position:absolute;
+  font-size:95px;
+  bottom:5px;
+  z-index:3;
+}
+
+.room-label{
+  position:absolute;
+  top:18px;
+  left:20px;
+  background:rgba(255,255,255,.85);
+  padding:8px 13px;
+  border-radius:10px;
+  font-weight:bold;
+  color:#0369a1;
+}
+
+/* ANSWERS */
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.answer{
+  border:2px solid #dbeafe;
+  background:#f8fafc;
+  padding:16px;
+  border-radius:14px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.answer:hover{
+  border-color:#38bdf8;
+  background:#e0f2fe;
+  transform:translateY(-2px);
+}
+
+.correct{
+  background:#dcfce7 !important;
+  border-color:#22c55e !important;
+  color:#166534;
+}
+
+.wrong{
+  background:#fee2e2 !important;
+  border-color:#ef4444 !important;
+  color:#991b1b;
+}
+
+/* FEEDBACK */
+
+.feedback{
+  margin-top:18px;
+  padding:14px;
+  border-radius:13px;
+  text-align:center;
+  font-weight:bold;
+  display:none;
+}
+
+.feedback.good{
+  display:block;
+  background:#dcfce7;
+  color:#166534;
+}
+
+.feedback.bad{
+  display:block;
+  background:#fff7ed;
+  color:#9a3412;
+}
+
+/* HINT */
+
+.hint-btn{
+  display:block;
+  margin:17px auto 0;
+  border:0;
+  background:#fef3c7;
+  color:#92400e;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.hint{
+  text-align:center;
+  margin-top:10px;
+  color:#92400e;
+  font-weight:bold;
+  display:none;
+}
+
+/* NEXT */
+
+.next-btn{
+  display:none;
+  width:100%;
+  margin-top:18px;
+  background:#0284c7;
+  color:white;
+  border:0;
+  padding:14px;
+  border-radius:13px;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* LEVEL NAV */
+
+.level-map{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.level-step{
+  text-align:center;
+  background:white;
+  padding:9px 3px;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:bold;
+  color:#94a3b8;
+}
+
+.level-step.active{
+  background:#0284c7;
+  color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  .answers{
+    grid-template-columns:1fr;
+  }
+
+  .picture{
+    min-height:280px;
+  }
+
+  .question{
+    font-size:22px;
+  }
+
+  .table{
+    width:240px;
+  }
+
+  .level-map{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">SENTENCE QUEST</div>
+
+  <button class="back-btn" onclick="goBack()">
+    ← Year 3
+  </button>
+</header>
+
+
+<div class="wrapper">
+
+  <div class="mission-title">
+
+    <div class="badge">
+      YEAR 3 • MISSION 03
+    </div>
+
+    <h1>PREPOSITIONS</h1>
+
+    <p>
+      Look carefully at the picture and build your sentence.
+    </p>
+
+  </div>
+
+
+  <div class="progress-info">
+    <span id="levelText">Level 1 of 5</span>
+    <span id="scoreText">Score: 0</span>
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+
+  <div class="quiz-card">
+
+    <div class="level-label" id="levelLabel">
+      LEVEL 1 • WORD HUNT
+    </div>
+
+    <h2 class="question" id="question">
+      Where is the cat?
+    </h2>
+
+
+    <!-- BIG PICTURE -->
+
+    <div class="picture" id="picture">
+
+      <div class="room-label">
+        LOOK AT THE PICTURE
+      </div>
+
+      <div class="table">
+
+        <div class="leg left"></div>
+        <div class="leg right"></div>
+
+      </div>
+
+      <div class="cat">
+        🐈
+      </div>
+
+    </div>
+
+
+    <!-- ANSWERS -->
+
+    <div class="answers" id="answers">
+
+      <button class="answer" onclick="checkAnswer(this,'on')">
+        on
+      </button>
+
+      <button class="answer" onclick="checkAnswer(this,'under')">
+        under
+      </button>
+
+      <button class="answer" onclick="checkAnswer(this,'behind')">
+        behind
+      </button>
+
+    </div>
+
+
+    <div class="feedback" id="feedback"></div>
+
+
+    <button class="hint-btn" id="hintButton" onclick="showHint()">
+      💡 Give Me a Hint
+    </button>
+
+    <div class="hint" id="hint">
+      Look carefully. The cat is below the table.
+    </div>
+
+
+    <button class="next-btn" id="nextButton" onclick="nextLevel()">
+      NEXT LEVEL →
+    </button>
+
+  </div>
+
+
+  <div class="level-map">
+
+    <div class="level-step active" id="step1">
+      1 • WORD HUNT
+    </div>
+
+    <div class="level-step" id="step2">
+      2 • PUZZLE
+    </div>
+
+    <div class="level-step" id="step3">
+      3 • COMPLETE
+    </div>
+
+    <div class="level-step" id="step4">
+      4 • BUILD
+    </div>
+
+    <div class="level-step" id="step5">
+      5 • MY SENTENCE
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+let currentLevel = 1;
+let score = 0;
+let hintsUsed = 0;
+
+
+/* BACK */
+
+function goBack(){
+  window.location.href="year3.html";
+}
+
+
+/* LEVEL 1 */
+
+function checkAnswer(button,answer){
+
+  const feedback =
+  document.getElementById("feedback");
+
+  const buttons =
+  document.querySelectorAll(".answer");
+
+  buttons.forEach(btn=>{
+    btn.disabled=true;
+  });
+
+  if(answer==="under"){
+
+    button.classList.add("correct");
+
+    feedback.className="feedback good";
+
+    feedback.innerHTML=
+    "⭐ Excellent! The cat is <b>under</b> the table.";
+
+    score++;
+
+    document.getElementById("scoreText").innerText =
+    "Score: " + score;
+
+    document.getElementById("nextButton").style.display =
+    "block";
+
+  }
+
+  else{
+
+    button.classList.add("wrong");
+
+    feedback.className="feedback bad";
+
+    feedback.innerHTML=
+    "Almost! Look at the position of the cat again.";
+
+    buttons.forEach(btn=>{
+      btn.disabled=false;
+    });
+
+    button.disabled=true;
+  }
+
+}
+
+
+/* HINT */
+
+function showHint(){
+
+  document.getElementById("hint").style.display =
+  "block";
+
+  document.getElementById("hintButton").style.display =
+  "none";
+
+  hintsUsed++;
+
+}
+
+
+/* NEXT LEVEL */
+
+function nextLevel(){
+
+  currentLevel++;
+
+  if(currentLevel===2){
+    loadLevel2();
+  }
+
+  else if(currentLevel===3){
+    loadLevel3();
+  }
+
+  else if(currentLevel===4){
+    loadLevel4();
+  }
+
+  else if(currentLevel===5){
+    loadLevel5();
+  }
+
+}
+
+
+/* COMMON */
+
+function updateLevel(){
+
+  document.getElementById("levelText").innerText =
+  "Level " + currentLevel + " of 5";
+
+  document.getElementById("progressBar").style.width =
+  (currentLevel*20) + "%";
+
+  for(let i=1;i<=5;i++){
+
+    document.getElementById("step"+i)
+    .classList.remove("active");
+
+  }
+
+  document.getElementById("step"+currentLevel)
+  .classList.add("active");
+
+}
+
+
+/* LEVEL 2 */
+
+function loadLevel2(){
+
+  updateLevel();
+
+  document.getElementById("levelLabel").innerText =
+  "LEVEL 2 • SENTENCE PUZZLE";
+
+  document.getElementById("question").innerText =
+  "Which sentence is correct?";
+
+  document.getElementById("answers").innerHTML = `
+
+    <button class="answer"
+    onclick="sentenceAnswer(this,false)">
+    Under the table the cat is.
+    </button>
+
+    <button class="answer"
+    onclick="sentenceAnswer(this,true)">
+    The cat is under the table.
+    </button>
+
+    <button class="answer"
+    onclick="sentenceAnswer(this,false)">
+    The table under is the cat.
+    </button>
+
+  `;
+
+  resetUI();
+
+  document.getElementById("hint").innerText =
+  "Start with WHO: The cat...";
+
+}
+
+
+/* LEVEL 2 ANSWER */
+
+function sentenceAnswer(button,correct){
+
+  const feedback =
+  document.getElementById("feedback");
+
+  if(correct){
+
+    button.classList.add("correct");
+
+    feedback.className="feedback good";
+
+    feedback.innerHTML=
+    "⭐ Great! <b>The cat is under the table.</b>";
+
+    score++;
+
+    updateScore();
+
+    disableAnswers();
+
+    showNext();
+
+  }
+
+  else{
+
+    button.classList.add("wrong");
+
+    feedback.className="feedback bad";
+
+    feedback.innerHTML=
+    "Try again. Remember: WHO + IS + WHERE.";
+
+    button.disabled=true;
+
+  }
+
+}
+
+
+/* LEVEL 3 */
+
+function loadLevel3(){
+
+  updateLevel();
+
+  document.getElementById("levelLabel").innerText =
+  "LEVEL 3 • COMPLETE IT!";
+
+  document.getElementById("question").innerHTML =
+  "The cat is _____ the table.";
+
+  document.getElementById("answers").innerHTML = `
+
+    <button class="answer"
+    onclick="genericAnswer(this,false)">
+    on
+    </button>
+
+    <button class="answer"
+    onclick="genericAnswer(this,true)">
+    under
+    </button>
+
+    <button class="answer"
+    onclick="genericAnswer(this,false)">
+    next to
+    </button>
+
+  `;
+
+  resetUI();
+
+  document.getElementById("hint").innerText =
+  "The cat is below the table.";
+
+}
+
+
+/* LEVEL 4 */
+
+function loadLevel4(){
+
+  updateLevel();
+
+  document.getElementById("levelLabel").innerText =
+  "LEVEL 4 • PICTURE BUILDER";
+
+  document.getElementById("question").innerText =
+  "Choose the best sentence for the picture.";
+
+  document.getElementById("answers").innerHTML = `
+
+    <button class="answer"
+    onclick="genericAnswer(this,true)">
+    The cat is under the table.
+    </button>
+
+    <button class="answer"
+    onclick="genericAnswer(this,false)">
+    The cat is on the table.
+    </button>
+
+    <button class="answer"
+    onclick="genericAnswer(this,false)">
+    The cat is next to the table.
+    </button>
+
+  `;
+
+  resetUI();
+
+  document.getElementById("hint").innerText =
+  "WHO? The cat. WHERE? Under the table.";
+
+}
+
+
+/* GENERIC ANSWER */
+
+function genericAnswer(button,correct){
+
+  const feedback =
+  document.getElementById("feedback");
+
+  if(correct){
+
+    button.classList.add("correct");
+
+    feedback.className="feedback good";
+
+    feedback.innerHTML=
+    "⭐ Excellent sentence!";
+
+    score++;
+
+    updateScore();
+
+    disableAnswers();
+
+    showNext();
+
+  }
+
+  else{
+
+    button.classList.add("wrong");
+
+    feedback.className="feedback bad";
+
+    feedback.innerHTML=
+    "Look carefully at the picture and try again.";
+
+    button.disabled=true;
+
+  }
+
+}
+
+
+/* LEVEL 5 */
+
+function loadLevel5(){
+
+  updateLevel();
+
+  document.getElementById("levelLabel").innerText =
+  "LEVEL 5 • MY SENTENCE";
+
+  document.getElementById("question").innerText =
+  "Look at the picture. Write your own sentence.";
+
+  document.getElementById("answers").innerHTML = `
+
+    <div style="width:100%;grid-column:1/-1;">
+
+      <input
+      id="studentSentence"
+      type="text"
+      placeholder="Write your sentence here..."
+      style="
+      width:100%;
+      padding:17px;
+      font-size:19px;
+      border:2px solid #bae6fd;
+      border-radius:13px;
+      outline:none;
+      ">
+
+      <button
+      onclick="checkSentence()"
+      style="
+      width:100%;
+      margin-top:12px;
+      padding:14px;
+      border:0;
+      border-radius:12px;
+      background:#22c55e;
+      color:white;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      ">
+      CHECK MY SENTENCE
+      </button>
+
+    </div>
+
+  `;
+
+  resetUI();
+
+  document.getElementById("hint").innerText =
+  "Start with: The cat is...";
+
+}
+
+
+/* CHECK WRITING */
+
+function checkSentence(){
+
+  let answer =
+  document.getElementById("studentSentence")
+  .value
+  .toLowerCase()
+  .trim()
+  .replace(/[.!?]/g,"");
+
+  const feedback =
+  document.getElementById("feedback");
+
+  const accepted = [
+
+    "the cat is under the table",
+
+    "a cat is under the table",
+
+    "the cat is underneath the table",
+
+    "there is a cat under the table"
+
+  ];
+
+  if(accepted.includes(answer)){
+
+    feedback.className="feedback good";
+
+    feedback.innerHTML=
+    "🏆 Fantastic! You wrote a complete sentence by yourself!";
+
+    score++;
+
+    updateScore();
+
+    document.getElementById("nextButton").style.display =
+    "block";
+
+    document.getElementById("nextButton").innerText =
+    "SEE MY RESULT 🏆";
+
+    document.getElementById("nextButton").onclick =
+    showResult;
+
+  }
+
+  else{
+
+    feedback.className="feedback bad";
+
+    feedback.innerHTML=
+    "Good try! Look at WHO and WHERE. Check your sentence and try again.";
+
+  }
+
+}
+
+
+/* RESULT */
+
+function showResult(){
+
+  document.querySelector(".quiz-card").innerHTML = `
+
+    <div style="text-align:center;padding:30px 10px;">
+
+      <div style="font-size:75px;">
+        🏆
+      </div>
+
+      <h1 style="
+      color:#075985;
+      margin-bottom:12px;
+      ">
+      MISSION COMPLETE!
+      </h1>
+
+      <p style="
+      font-size:19px;
+      color:#64748b;
+      ">
+      You completed the Prepositions Mission.
+      </p>
+
+      <div style="
+      font-size:34px;
+      font-weight:900;
+      margin:25px 0;
+      color:#16a34a;
+      ">
+      ${score} / 5
+      </div>
+
+      <p>
+      Hints used: <b>${hintsUsed}</b>
+      </p>
+
+      <br>
+
+      <button
+      onclick="goBack()"
+      style="
+      padding:14px 25px;
+      border:0;
+      border-radius:12px;
+      background:#0284c7;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      ">
+      BACK TO YEAR 3 MISSIONS
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* HELPERS */
+
+function resetUI(){
+
+  document.getElementById("feedback").className =
+  "feedback";
+
+  document.getElementById("feedback").innerHTML =
+  "";
+
+  document.getElementById("nextButton").style.display =
+  "none";
+
+  document.getElementById("hint").style.display =
+  "none";
+
+  document.getElementById("hintButton").style.display =
+  "block";
+
+}
+
+
+function updateScore(){
+
+  document.getElementById("scoreText").innerText =
+  "Score: " + score;
+
+}
+
+
+function disableAnswers(){
+
+  document.querySelectorAll(".answer")
+  .forEach(btn=>btn.disabled=true);
+
+}
+
+
+function showNext(){
+
+  document.getElementById("nextButton").style.display =
+  "block";
+
+}
+
+</script>
+
+</body>
+</html>
