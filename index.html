@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sentence Quest | English Sentence Builder</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, #dff7ff 0, transparent 35%),
+        radial-gradient(circle at top right, #fff1c9 0, transparent 32%),
+        linear-gradient(135deg, #eef9ff, #f8fbff);
+      color: #17324d;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .topbar {
+      background: linear-gradient(135deg, #075985, #0284c7);
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .teacher-btn {
+      border: 1px solid rgba(255,255,255,.5);
+      background: rgba(255,255,255,.15);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .teacher-btn:hover {
+      background: white;
+      color: #075985;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      padding: 60px 25px 30px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 800;
+      padding: 8px 15px;
+      border-radius: 30px;
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 1;
+      color: #075985;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #f59e0b;
+    }
+
+    .hero-subtitle {
+      font-size: 21px;
+      color: #52697f;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .formula {
+      margin: 28px auto 0;
+      background: white;
+      max-width: 760px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(14, 116, 144, .10);
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .formula span {
+      display: inline-block;
+      margin: 5px 7px;
+    }
+
+    /* =========================
+       YEAR SELECTION
+    ========================= */
+
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 25px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      color: #17324d;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #64748b;
+      font-size: 17px;
+    }
+
+    .year-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .year-card {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .09);
+      transition: .25s ease;
+      border: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .year-card:hover {
+      transform: translateY(-7px);
+      border-color: #38bdf8;
+      box-shadow: 0 18px 35px rgba(2, 132, 199, .15);
+    }
+
+    .year-icon {
+      width: 95px;
+      height: 95px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 42px;
+      font-weight: 900;
+      color: white;
+    }
+
+    .year3 .year-icon {
+      background: linear-gradient(135deg, #06b6d4, #0284c7);
+    }
+
+    .year4 .year-icon {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+    }
+
+    .year-card h3 {
+      font-size: 30px;
+      margin-bottom: 7px;
+    }
+
+    .year-card p {
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    .start-btn {
+      display: inline-block;
+      padding: 13px 25px;
+      border-radius: 13px;
+      color: white;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .year3 .start-btn {
+      background: #0284c7;
+    }
+
+    .year4 .start-btn {
+      background: #f97316;
+    }
+
+    /* =========================
+       JOURNEY
+    ========================= */
+
+    .journey-section {
+      background: white;
+      margin-top: 40px;
+      padding: 55px 25px;
+    }
+
+    .journey {
+      max-width: 1050px;
+      margin: 30px auto 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .level {
+      text-align: center;
+      padding: 20px 10px;
+      border-radius: 18px;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+    }
+
+    .level-number {
+      width: 48px;
+      height: 48px;
+      margin: auto auto 12px;
+      border-radius: 50%;
+      background: #0ea5e9;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .level:last-child .level-number {
+      background: #f59e0b;
+    }
+
+    .level h4 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .level p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* =========================
+       GRAMMAR
+    ========================= */
+
+    .grammar {
+      max-width: 1100px;
+      margin: auto;
+      padding: 55px 25px;
+    }
+
+    .grammar-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .grammar-pill {
+      background: white;
+      border: 1px solid #dbeafe;
+      color: #075985;
+      border-radius: 30px;
+      padding: 10px 16px;
+      font-weight: 700;
+      box-shadow: 0 3px 10px rgba(0,0,0,.04);
+    }
+
+    /* =========================
+       GOAL
+    ========================= */
+
+    .goal {
+      max-width: 900px;
+      margin: 10px auto 60px;
+      background: linear-gradient(135deg, #075985, #0ea5e9);
+      color: white;
+      padding: 38px;
+      border-radius: 26px;
+      text-align: center;
+      box-shadow: 0 14px 35px rgba(2,132,199,.25);
+    }
+
+    .goal h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .goal p {
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: .95;
+    }
+
+    .goal-example {
+      margin-top: 20px;
+      background: rgba(255,255,255,.15);
+      padding: 17px;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media(max-width: 800px) {
+
+      .year-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .journey {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        padding: 14px 20px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="brand">SENTENCE QUEST</div>
+
+    <button class="teacher-btn" onclick="teacherDashboard()">
+      Teacher Dashboard
+    </button>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="badge">
+      ENGLISH SENTENCE BUILDER • YEAR 3 & YEAR 4
+    </div>
+
+    <h1>
+      SEE. BUILD. <span>WRITE.</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Learn how to build English sentences step by step through
+      colourful pictures, interactive activities and fun grammar missions.
+    </p>
+
+    <div class="formula">
+      <span>WHO?</span>
+      +
+      <span>ACTION</span>
+      +
+      <span>WHAT?</span>
+      +
+      <span>WHERE?</span>
+      =
+      <span>⭐ SENTENCE</span>
+    </div>
+
+  </section>
+
+
+  <!-- YEAR -->
+  <section class="section">
+
+    <div class="section-title">
+      <h2>Choose Your Mission</h2>
+      <p>Select your year to start your sentence adventure.</p>
+    </div>
+
+    <div class="year-grid">
+
+      <div class="year-card year3" onclick="openYear(3)">
+        <div class="year-icon">3</div>
+
+        <h3>YEAR 3</h3>
+
+        <p>
+          Sentence activities based on
+          <strong>Get Smart Plus 3</strong>
+        </p>
+
+        <button class="start-btn">
+          START YEAR 3
+        </button>
+      </div>
+
+
+      <div class="year-card year4" onclick="openYear(4)">
+        <div class="year-icon">4</div>
+
+        <h3>YEAR 4</h3>
+
+        <p>
+          Sentence activities based on
+          <strong>Get Smart Plus 4</strong>
+        </p>
+
+        <button class="start-btn">
+          START YEAR 4
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- JOURNEY -->
+  <section class="journey-section">
+
+    <div class="section-title">
+      <h2>Your Sentence Journey</h2>
+      <p>
+        Complete each level and become a Sentence Master.
+      </p>
+    </div>
+
+    <div class="journey">
+
+      <div class="level">
+        <div class="level-number">1</div>
+        <h4>WORD HUNT</h4>
+        <p>Look at pictures and identify the correct words.</p>
+      </div>
+
+      <div class="level">
+        <div class="level-number">2</div>
+        <h4>SENTENCE PUZZLE</h4>
+        <p>Put the words in the correct order.</p>
+      </div>
+
+      <div class="level">
+        <div class="level-number">3</div>
+        <h4>COMPLETE IT!</h4>
+        <p>Choose the correct word to complete a sentence.</p>
+      </div>
+
+      <div class="level">
+        <div class="level-number">4</div>
+        <h4>PICTURE BUILDER</h4>
+        <p>Use clues from a picture to build a sentence.</p>
+      </div>
+
+      <div class="level">
+        <div class="level-number">5</div>
+        <h4>MY SENTENCE</h4>
+        <p>Look at the picture and write your own sentence.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GRAMMAR -->
+  <section class="grammar">
+
+    <div class="section-title">
+      <h2>Grammar Missions</h2>
+      <p>
+        Grammar skills that will help you build better sentences.
+      </p>
+    </div>
+
+    <div class="grammar-grid">
+
+      <div class="grammar-pill">Nouns</div>
+      <div class="grammar-pill">Pronouns</div>
+      <div class="grammar-pill">Adjectives</div>
+      <div class="grammar-pill">Prepositions</div>
+      <div class="grammar-pill">Time</div>
+
+      <div class="grammar-pill">Determiners</div>
+      <div class="grammar-pill">Quantifiers</div>
+
+      <div class="grammar-pill">Present Simple</div>
+      <div class="grammar-pill">Present Continuous</div>
+
+      <div class="grammar-pill">Modals</div>
+      <div class="grammar-pill">Past Tense</div>
+
+      <div class="grammar-pill">Comparatives</div>
+      <div class="grammar-pill">Superlatives</div>
+
+      <div class="grammar-pill">Future Plans</div>
+
+      <div class="grammar-pill">Adverbs of Frequency</div>
+      <div class="grammar-pill">Adverbs of Manner</div>
+
+      <div class="grammar-pill">Conjunctions</div>
+      <div class="grammar-pill">Possessive Pronouns</div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL GOAL -->
+  <section class="goal">
+
+    <h2>🏆 YOUR FINAL MISSION</h2>
+
+    <p>
+      Look carefully at a picture, think about what is happening,
+      and write a complete English sentence by yourself.
+    </p>
+
+    <div class="goal-example">
+      The girl is reading a book in the library.
+    </div>
+
+  </section>
+
+
+  <footer>
+    Sentence Quest • Interactive English Sentence Builder
+    <br>
+    Year 3 & Year 4
+  </footer>
+
+
+  <script>
+
+    function openYear(year) {
+
+      if (year === 3) {
+        window.location.href = "year3.html";
+      }
+
+      if (year === 4) {
+        window.location.href = "year4.html";
+      }
+
+    }
+
+
+    function teacherDashboard() {
+
+      alert(
+        "Teacher Dashboard will be activated after the student quiz modules are completed."
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
