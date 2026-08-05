@@ -728,6 +728,13 @@ header{
 
   </div>
 
+  <div style="text-align:center; margin-top:15px;">
+    <button onclick="testDatabase()" style="background:#7c3aed;color:white;border:none;padding:12px 22px;border-radius:10px;font-weight:bold;cursor:pointer;">
+      TEST DATABASE
+    </button>
+    <div id="testDatabaseStatus" style="margin-top:10px;font-weight:bold;"></div>
+  </div>
+
 </div>
 
 </div>
@@ -2299,6 +2306,65 @@ function saveResult(masteryText){
       "#991b1b";
 
     }
+
+  });
+
+}
+
+
+/* =====================================
+   TEST DATABASE
+===================================== */
+
+function testDatabase(){
+
+  const status = document.getElementById("testDatabaseStatus");
+  status.innerHTML = "⏳ Testing database connection...";
+  status.style.color = "#075985";
+
+  const testData = {
+    studentName: "TEST GITHUB",
+    studentClass: "3 TEST",
+    year: "Year 3",
+    topic: "Prepositions",
+    totalScore: 90,
+    percentage: 90,
+    masteryLevel: "INDEPENDENT",
+    hintsUsed: 1,
+    wrongAttempts: 2,
+    wordHunt: 20,
+    sentencePuzzle: 18,
+    completeIt: 18,
+    pictureBuilder: 17,
+    mySentence: 17
+  };
+
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(testData)
+  })
+  .then(response => response.json())
+  .then(data => {
+
+    console.log("DATABASE TEST:", data);
+
+    if(data.status === "success"){
+      status.innerHTML = "✅ DATABASE CONNECTED — TEST RECORD SAVED";
+      status.style.color = "#166534";
+    } else {
+      status.innerHTML = "❌ DATABASE ERROR: " + (data.message || "Unknown error");
+      status.style.color = "#991b1b";
+    }
+
+  })
+  .catch(error => {
+
+    console.error("DATABASE TEST ERROR:", error);
+    status.innerHTML = "❌ CONNECTION FAILED";
+    status.style.color = "#991b1b";
 
   });
 
