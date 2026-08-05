@@ -24,7 +24,9 @@ body{
   color:#17324d;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
   background:linear-gradient(135deg,#075985,#0284c7);
@@ -33,11 +35,13 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.10);
 }
 
 .brand{
   font-size:20px;
   font-weight:900;
+  letter-spacing:.5px;
 }
 
 .back-btn{
@@ -50,7 +54,15 @@ header{
   font-weight:bold;
 }
 
-/* PAGE */
+.back-btn:hover{
+  background:white;
+  color:#075985;
+}
+
+
+/* =========================
+   PAGE
+========================= */
 
 .wrapper{
   max-width:1000px;
@@ -65,7 +77,10 @@ header{
   align-items:center;
 }
 
-/* LEFT */
+
+/* =========================
+   LEFT INTRO
+========================= */
 
 .intro{
   padding:20px;
@@ -99,44 +114,57 @@ header{
   line-height:1.6;
 }
 
+
+/* =========================
+   VISUAL
+========================= */
+
 .visual{
   margin-top:25px;
-  min-height:230px;
+  min-height:240px;
   border-radius:22px;
-  background:linear-gradient(#bae6fd 0 67%,#bbf7d0 67%);
+  background:
+    linear-gradient(
+      #bae6fd 0 67%,
+      #bbf7d0 67%
+    );
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:75px;
   position:relative;
   overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .sun{
   position:absolute;
   right:20px;
   top:15px;
-  font-size:45px;
+  font-size:48px;
 }
 
 .cloud{
   position:absolute;
   left:25px;
   top:20px;
-  font-size:45px;
+  font-size:48px;
 }
 
 .visual-text{
-  background:rgba(255,255,255,.85);
-  padding:15px 20px;
-  border-radius:15px;
+  background:rgba(255,255,255,.90);
+  padding:18px 24px;
+  border-radius:16px;
   text-align:center;
-  font-size:18px;
+  font-size:19px;
   font-weight:900;
   color:#075985;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
-/* LOGIN CARD */
+
+/* =========================
+   LOGIN CARD
+========================= */
 
 .card{
   background:white;
@@ -148,6 +176,7 @@ header{
 .card h2{
   font-size:28px;
   margin-bottom:7px;
+  color:#17324d;
 }
 
 .card-sub{
@@ -155,6 +184,11 @@ header{
   margin-bottom:25px;
   line-height:1.5;
 }
+
+
+/* =========================
+   FORM
+========================= */
 
 .form-group{
   margin-bottom:18px;
@@ -167,8 +201,7 @@ label{
   color:#334155;
 }
 
-input,
-select{
+input{
   width:100%;
   padding:14px;
   border:2px solid #dbeafe;
@@ -176,12 +209,38 @@ select{
   font-size:16px;
   outline:none;
   background:white;
+  transition:.2s;
 }
 
-input:focus,
-select:focus{
+input:focus{
   border-color:#38bdf8;
+  box-shadow:0 0 0 4px rgba(56,189,248,.12);
 }
+
+input::placeholder{
+  color:#94a3b8;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error{
+  display:none;
+  background:#fee2e2;
+  color:#991b1b;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:17px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+
+/* =========================
+   MISSION INFO
+========================= */
 
 .mission-info{
   background:#f0f9ff;
@@ -195,7 +254,12 @@ select:focus{
   display:flex;
   justify-content:space-between;
   gap:15px;
-  padding:6px 0;
+  padding:7px 0;
+  border-bottom:1px dashed #dbeafe;
+}
+
+.info-row:last-child{
+  border-bottom:none;
 }
 
 .info-label{
@@ -208,10 +272,20 @@ select:focus{
   text-align:right;
 }
 
+
+/* =========================
+   START BUTTON
+========================= */
+
 .start-btn{
   width:100%;
   border:0;
-  background:linear-gradient(135deg,#16a34a,#22c55e);
+  background:
+    linear-gradient(
+      135deg,
+      #16a34a,
+      #22c55e
+    );
   color:white;
   padding:15px;
   border-radius:13px;
@@ -226,15 +300,8 @@ select:focus{
   box-shadow:0 8px 18px rgba(34,197,94,.25);
 }
 
-.error{
-  display:none;
-  background:#fee2e2;
-  color:#991b1b;
-  padding:11px;
-  border-radius:10px;
-  margin-bottom:15px;
-  font-weight:bold;
-  font-size:14px;
+.start-btn:active{
+  transform:translateY(0);
 }
 
 .note{
@@ -242,9 +309,35 @@ select:focus{
   color:#94a3b8;
   font-size:12px;
   margin-top:14px;
+  line-height:1.5;
 }
 
-/* MOBILE */
+
+/* =========================
+   MISSION STEPS
+========================= */
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+  margin-top:18px;
+}
+
+.step{
+  background:#e0f2fe;
+  color:#0369a1;
+  text-align:center;
+  padding:8px 3px;
+  border-radius:8px;
+  font-size:10px;
+  font-weight:900;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:800px){
 
@@ -266,10 +359,40 @@ select:focus{
 
 }
 
+@media(max-width:500px){
+
+  .wrapper{
+    padding:30px 15px;
+  }
+
+  .card{
+    padding:24px 20px;
+  }
+
+  .intro{
+    padding:5px;
+  }
+
+  .intro h1{
+    font-size:34px;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -277,18 +400,24 @@ select:focus{
     SENTENCE QUEST
   </div>
 
-  <button class="back-btn" onclick="goBack()">
+  <button
+    class="back-btn"
+    onclick="goBack()">
     ← Year 3
   </button>
 
 </header>
 
 
+
 <div class="wrapper">
 
   <div class="page-grid">
 
-    <!-- LEFT -->
+
+    <!-- =========================
+         LEFT SIDE
+    ========================= -->
 
     <section class="intro">
 
@@ -296,29 +425,43 @@ select:focus{
         YEAR 3 • SENTENCE BUILDER
       </div>
 
+
       <h1>
         READY FOR YOUR
         <span>MISSION?</span>
       </h1>
 
+
       <p>
         Look at the pictures, solve the challenges
-        and learn how to build complete English sentences.
+        and learn how to build complete English
+        sentences step by step.
       </p>
+
 
       <div class="visual">
 
-        <div class="sun">☀️</div>
-        <div class="cloud">☁️</div>
+        <div class="sun">
+          ☀️
+        </div>
+
+        <div class="cloud">
+          ☁️
+        </div>
+
 
         <div class="visual-text">
+
           👀 LOOK
           &nbsp; → &nbsp;
           🧠 THINK
+
           <br><br>
+
           🧩 BUILD
           &nbsp; → &nbsp;
           ✏️ WRITE
+
         </div>
 
       </div>
@@ -326,20 +469,39 @@ select:focus{
     </section>
 
 
-    <!-- LOGIN -->
+
+    <!-- =========================
+         STUDENT DETAILS
+    ========================= -->
 
     <section class="card">
 
-      <h2>Hello, Sentence Explorer!</h2>
+
+      <h2>
+        Hello, Sentence Explorer!
+      </h2>
+
 
       <p class="card-sub">
-        Enter your details before starting the mission.
+        Enter your name and class before
+        starting the mission.
       </p>
 
-      <div class="error" id="error">
-        Please enter your name and choose your class.
+
+
+      <!-- ERROR -->
+
+      <div
+        class="error"
+        id="error">
+
+        Please enter your name and class.
+
       </div>
 
+
+
+      <!-- STUDENT NAME -->
 
       <div class="form-group">
 
@@ -357,133 +519,230 @@ select:focus{
       </div>
 
 
+
+      <!-- STUDENT CLASS -->
+
       <div class="form-group">
 
         <label for="studentClass">
           Your Class
         </label>
 
-        <select id="studentClass">
-
-          <option value="">
-            -- Choose your class --
-          </option>
-
-          <option value="3 Amanah">
-            3 Amanah
-          </option>
-
-          <option value="3 Bestari">
-            3 Bestari
-          </option>
-
-          <option value="3 Cemerlang">
-            3 Cemerlang
-          </option>
-
-          <option value="3 Dedikasi">
-            3 Dedikasi
-          </option>
-
-        </select>
+        <input
+          type="text"
+          id="studentClass"
+          placeholder="Example: 3 UKM"
+          autocomplete="off"
+        >
 
       </div>
 
+
+
+      <!-- MISSION INFORMATION -->
 
       <div class="mission-info">
 
         <div class="info-row">
-          <span class="info-label">Year</span>
-          <span class="info-value">Year 3</span>
+
+          <span class="info-label">
+            Year
+          </span>
+
+          <span class="info-value">
+            Year 3
+          </span>
+
         </div>
 
-        <div class="info-row">
-          <span class="info-label">Mission</span>
-          <span class="info-value">Prepositions</span>
-        </div>
 
         <div class="info-row">
-          <span class="info-label">Levels</span>
-          <span class="info-value">5</span>
+
+          <span class="info-label">
+            Mission
+          </span>
+
+          <span class="info-value">
+            Prepositions
+          </span>
+
         </div>
 
+
         <div class="info-row">
-          <span class="info-label">Activities</span>
-          <span class="info-value">50</span>
+
+          <span class="info-label">
+            Levels
+          </span>
+
+          <span class="info-value">
+            5 Levels
+          </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <span class="info-label">
+            Activities
+          </span>
+
+          <span class="info-value">
+            50 Activities
+          </span>
+
         </div>
 
       </div>
 
 
-      <button class="start-btn" onclick="startMission()">
+
+      <!-- LEVELS -->
+
+      <div class="steps">
+
+        <div class="step">
+          1<br>WORD
+        </div>
+
+        <div class="step">
+          2<br>PUZZLE
+        </div>
+
+        <div class="step">
+          3<br>COMPLETE
+        </div>
+
+        <div class="step">
+          4<br>BUILD
+        </div>
+
+        <div class="step">
+          5<br>WRITE
+        </div>
+
+      </div>
+
+
+      <br>
+
+
+      <!-- START -->
+
+      <button
+        class="start-btn"
+        onclick="startMission()">
+
         START MISSION →
+
       </button>
 
 
       <div class="note">
-        Do your best. You can use hints when you need help.
+
+        Do your best!
+        <br>
+        You can use hints when you need help.
+
       </div>
 
+
     </section>
+
 
   </div>
 
 </div>
 
 
+
 <script>
+
+/* =========================
+   START MISSION
+========================= */
 
 function startMission(){
 
   const name =
-    document.getElementById("studentName")
+    document
+    .getElementById("studentName")
     .value
     .trim();
 
+
   const studentClass =
-    document.getElementById("studentClass")
-    .value;
+    document
+    .getElementById("studentClass")
+    .value
+    .trim();
 
-  if(name === "" || studentClass === ""){
 
-    document.getElementById("error")
+  /* CHECK EMPTY FIELD */
+
+  if(
+    name === "" ||
+    studentClass === ""
+  ){
+
+    document
+    .getElementById("error")
     .style.display = "block";
 
     return;
 
   }
 
-  /*
-    Store student information in the browser.
 
-    quiz.html can read these values later.
-  */
+  /* HIDE ERROR */
+
+  document
+  .getElementById("error")
+  .style.display = "none";
+
+
+  /* =========================
+     SAVE STUDENT INFORMATION
+  ========================= */
 
   localStorage.setItem(
     "sentenceQuestStudentName",
     name
   );
 
+
   localStorage.setItem(
     "sentenceQuestStudentClass",
     studentClass
   );
+
 
   localStorage.setItem(
     "sentenceQuestYear",
     "3"
   );
 
+
   localStorage.setItem(
     "sentenceQuestMission",
     "Prepositions"
   );
+
+
+  /* =========================
+     OPEN QUIZ
+  ========================= */
 
   window.location.href =
     "quiz.html?year=3&mission=prepositions";
 
 }
 
+
+/* =========================
+   BACK TO YEAR 3
+========================= */
 
 function goBack(){
 
@@ -492,7 +751,26 @@ function goBack(){
 
 }
 
+
+/* =========================
+   PRESS ENTER TO START
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      startMission();
+
+    }
+
+  }
+);
+
 </script>
+
 
 </body>
 </html>
