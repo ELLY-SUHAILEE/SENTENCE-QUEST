@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard | Sentence Quest</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f1f5f9;color:#17324d;min-height:100vh}
+header{background:linear-gradient(135deg,#075985,#0284c7);color:#fff;padding:16px 4%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 15px rgba(0,0,0,.12)}
+.brand{font-size:21px;font-weight:900}.header-right{display:flex;gap:10px;align-items:center}
+.btn{border:0;border-radius:10px;padding:10px 15px;font-weight:900;cursor:pointer}
+.refresh{background:#fff;color:#075985}.back{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.45)}
+.wrapper{max-width:1400px;margin:auto;padding:22px}
+.hero{background:#fff;border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:0 5px 18px rgba(15,23,42,.07)}
+.hero h1{color:#075985;font-size:30px}.hero p{color:#64748b;margin-top:6px}
+.connection{margin-top:10px;font-size:13px;font-weight:bold;color:#64748b}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 5px 18px rgba(15,23,42,.07)}
+.card .label{font-size:12px;color:#64748b;font-weight:900;text-transform:uppercase}.card .value{font-size:31px;font-weight:900;color:#075985;margin-top:6px}
+.filters{background:#fff;border-radius:16px;padding:15px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:10px;margin-bottom:16px;box-shadow:0 5px 18px rgba(15,23,42,.07)}
+input,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:10px;font-size:14px;outline:none}
+.section{background:#fff;border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 5px 18px rgba(15,23,42,.07)}
+.section h2{color:#075985;font-size:19px;margin-bottom:14px}
+.skills{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.skill{background:#f8fafc;border:1px solid #e2e8f0;border-radius:13px;padding:14px}
+.skill-name{font-size:12px;font-weight:900;color:#475569}.skill-score{font-size:25px;font-weight:900;color:#0284c7;margin:6px 0}
+.bar{height:8px;background:#e2e8f0;border-radius:20px;overflow:hidden}.bar span{display:block;height:100%;background:#0ea5e9;border-radius:20px}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:1050px}
+th,td{padding:11px 10px;border-bottom:1px solid #e2e8f0;text-align:left;font-size:13px}
+th{background:#f8fafc;color:#475569;position:sticky;top:0}
+.name{font-weight:900;color:#075985}.score{font-weight:900}
+.badge{display:inline-block;padding:6px 9px;border-radius:20px;font-size:11px;font-weight:900}
+.independent{background:#dcfce7;color:#166534}.developing{background:#fef3c7;color:#92400e}.support{background:#fee2e2;color:#991b1b}
+.empty{text-align:center;padding:35px;color:#64748b}.footer-note{text-align:center;color:#94a3b8;font-size:12px;padding:8px}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.skills{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){header{align-items:flex-start;gap:10px;flex-direction:column}.wrapper{padding:12px}.cards,.filters,.skills{grid-template-columns:1fr}.hero h1{font-size:25px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">📖 SENTENCE QUEST • TEACHER</div>
+  <div class="header-right">
+    <button class="btn refresh" onclick="loadRecords()">↻ REFRESH DATA</button>
+    <button class="btn back" onclick="goHome()">← HOME</button>
+  </div>
+</header>
+
+<div class="wrapper">
+  <div class="hero">
+    <h1>Teacher Dashboard</h1>
+    <p>Student performance, mastery and sentence-building skill analysis.</p>
+    <div class="connection" id="connectionStatus">⏳ Loading student records...</div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="label">Total Attempts</div><div class="value" id="totalAttempts">0</div></div>
+    <div class="card"><div class="label">Average Score</div><div class="value" id="averageScore">0%</div></div>
+    <div class="card"><div class="label">Independent</div><div class="value" id="independentCount">0</div></div>
+    <div class="card"><div class="label">Developing</div><div class="value" id="developingCount">0</div></div>
+    <div class="card"><div class="label">Needs Support</div><div class="value" id="supportCount">0</div></div>
+  </div>
+
+  <div class="filters">
+    <input id="searchInput" type="text" placeholder="Search student name..." oninput="applyFilters()">
+    <select id="yearFilter" onchange="applyFilters()"><option value="">All Years</option></select>
+    <select id="classFilter" onchange="applyFilters()"><option value="">All Classes</option></select>
+    <select id="topicFilter" onchange="applyFilters()"><option value="">All Missions</option></select>
+  </div>
+
+  <div class="section">
+    <h2>5-Skill Performance</h2>
+    <div class="skills">
+      <div class="skill"><div class="skill-name">WORD HUNT</div><div class="skill-score" id="skill0">0%</div><div class="bar"><span id="bar0" style="width:0%"></span></div></div>
+      <div class="skill"><div class="skill-name">SENTENCE PUZZLE</div><div class="skill-score" id="skill1">0%</div><div class="bar"><span id="bar1" style="width:0%"></span></div></div>
+      <div class="skill"><div class="skill-name">COMPLETE IT!</div><div class="skill-score" id="skill2">0%</div><div class="bar"><span id="bar2" style="width:0%"></span></div></div>
+      <div class="skill"><div class="skill-name">PICTURE BUILDER</div><div class="skill-score" id="skill3">0%</div><div class="bar"><span id="bar3" style="width:0%"></span></div></div>
+      <div class="skill"><div class="skill-name">MY SENTENCE</div><div class="skill-score" id="skill4">0%</div><div class="bar"><span id="bar4" style="width:0%"></span></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Student Records <span id="recordCount" style="font-size:13px;color:#64748b"></span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date & Time</th><th>Student</th><th>Class</th><th>Year</th><th>Mission</th>
+            <th>Score</th><th>Mastery</th><th>Hints</th><th>Wrong</th>
+            <th>Word Hunt</th><th>Puzzle</th><th>Complete</th><th>Builder</th><th>My Sentence</th>
+          </tr>
+        </thead>
+        <tbody id="recordsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer-note">Sentence Quest • Teacher Dashboard</div>
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycby84aD1yrCse0CKs78jKTG_bDAhA42TlsCjLJsRL3PkDEhXZadGcmu-moxorgP_IXN8/exec?action=records";
+let allRecords = [];
+let filteredRecords = [];
+
+async function loadRecords(){
+  const status = document.getElementById("connectionStatus");
+  status.innerHTML = "⏳ Loading student records...";
+  try{
+    const response = await fetch(API_URL + "&t=" + Date.now(), {cache:"no-store"});
+    const data = await response.json();
+    if(data.status !== "success") throw new Error(data.message || "API error");
+    allRecords = Array.isArray(data.records) ? data.records : [];
+    buildFilters();
+    applyFilters();
+    status.innerHTML = "✅ Database connected • Last refreshed: " + new Date().toLocaleString();
+    status.style.color = "#166534";
+  }catch(error){
+    console.error(error);
+    status.innerHTML = "❌ Unable to load records. Check the Apps Script deployment.";
+    status.style.color = "#991b1b";
+  }
+}
+
+function uniqueValues(key){
+  return [...new Set(allRecords.map(r => String(r[key] || "").trim()).filter(Boolean))]
+    .sort((a,b) => a.localeCompare(b));
+}
+
+function fillSelect(id, values, firstLabel){
+  const select = document.getElementById(id);
+  const current = select.value;
+  select.innerHTML = `<option value="">${firstLabel}</option>` +
+    values.map(v => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join("");
+  if(values.includes(current)) select.value = current;
+}
+
+function buildFilters(){
+  fillSelect("yearFilter", uniqueValues("year"), "All Years");
+  fillSelect("classFilter", uniqueValues("studentClass"), "All Classes");
+  fillSelect("topicFilter", uniqueValues("topic"), "All Missions");
+}
+
+function applyFilters(){
+  const search = document.getElementById("searchInput").value.trim().toLowerCase();
+  const year = document.getElementById("yearFilter").value;
+  const cls = document.getElementById("classFilter").value;
+  const topic = document.getElementById("topicFilter").value;
+
+  filteredRecords = allRecords.filter(r => {
+    return (!search || String(r.studentName || "").toLowerCase().includes(search)) &&
+           (!year || r.year === year) &&
+           (!cls || r.studentClass === cls) &&
+           (!topic || r.topic === topic);
+  });
+
+  updateSummary();
+  updateSkills();
+  renderTable();
+}
+
+function updateSummary(){
+  const n = filteredRecords.length;
+  const avg = n ? Math.round(filteredRecords.reduce((s,r)=>s+(Number(r.percentage)||0),0)/n) : 0;
+  const independent = filteredRecords.filter(r => r.masteryLevel === "INDEPENDENT").length;
+  const developing = filteredRecords.filter(r => r.masteryLevel === "DEVELOPING").length;
+  const support = filteredRecords.filter(r => r.masteryLevel === "NEEDS SUPPORT").length;
+
+  document.getElementById("totalAttempts").innerText = n;
+  document.getElementById("averageScore").innerText = avg + "%";
+  document.getElementById("independentCount").innerText = independent;
+  document.getElementById("developingCount").innerText = developing;
+  document.getElementById("supportCount").innerText = support;
+  document.getElementById("recordCount").innerText = `(${n} record${n===1?"":"s"})`;
+}
+
+function updateSkills(){
+  const keys = ["wordHunt","sentencePuzzle","completeIt","pictureBuilder","mySentence"];
+  keys.forEach((key,i)=>{
+    const n = filteredRecords.length;
+    const avgPoints = n ? filteredRecords.reduce((s,r)=>s+(Number(r[key])||0),0)/n : 0;
+    const pct = Math.max(0,Math.min(100,Math.round((avgPoints/20)*100)));
+    document.getElementById("skill"+i).innerText = pct + "%";
+    document.getElementById("bar"+i).style.width = pct + "%";
+  });
+}
+
+function masteryBadge(value){
+  if(value === "INDEPENDENT") return `<span class="badge independent">⭐ INDEPENDENT</span>`;
+  if(value === "DEVELOPING") return `<span class="badge developing">DEVELOPING</span>`;
+  return `<span class="badge support">NEEDS SUPPORT</span>`;
+}
+
+function renderTable(){
+  const body = document.getElementById("recordsBody");
+  if(!filteredRecords.length){
+    body.innerHTML = `<tr><td colspan="14" class="empty">No student records found.</td></tr>`;
+    return;
+  }
+
+  body.innerHTML = filteredRecords.map(r => `
+    <tr>
+      <td>${escapeHtml(r.timestamp)}</td>
+      <td class="name">${escapeHtml(r.studentName)}</td>
+      <td>${escapeHtml(r.studentClass)}</td>
+      <td>${escapeHtml(r.year)}</td>
+      <td>${escapeHtml(r.topic)}</td>
+      <td class="score">${Number(r.totalScore)||0}/100</td>
+      <td>${masteryBadge(r.masteryLevel)}</td>
+      <td>${Number(r.hintsUsed)||0}</td>
+      <td>${Number(r.wrongAttempts)||0}</td>
+      <td>${Number(r.wordHunt)||0}/20</td>
+      <td>${Number(r.sentencePuzzle)||0}/20</td>
+      <td>${Number(r.completeIt)||0}/20</td>
+      <td>${Number(r.pictureBuilder)||0}/20</td>
+      <td>${Number(r.mySentence)||0}/20</td>
+    </tr>
+  `).join("");
+}
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+
+loadRecords();
+</script>
+</body>
+</html>
