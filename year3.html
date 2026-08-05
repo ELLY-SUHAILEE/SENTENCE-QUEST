@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Year 3 | Sentence Quest</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at top left,#dff7ff 0,transparent 30%),
+    radial-gradient(circle at top right,#fff1c9 0,transparent 30%),
+    #f4faff;
+  color:#17324d;
+  min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+  background:linear-gradient(135deg,#075985,#0284c7);
+  color:white;
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
+
+.brand{
+  font-weight:900;
+  font-size:21px;
+}
+
+.home-btn{
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.45);
+  color:white;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.home-btn:hover{
+  background:white;
+  color:#075985;
+}
+
+/* HERO */
+
+.hero{
+  max-width:1100px;
+  margin:auto;
+  padding:50px 25px 25px;
+  text-align:center;
+}
+
+.year-badge{
+  display:inline-block;
+  background:#cffafe;
+  color:#0e7490;
+  padding:8px 18px;
+  border-radius:30px;
+  font-weight:900;
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:clamp(38px,6vw,62px);
+  color:#075985;
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#f59e0b;
+}
+
+.hero p{
+  max-width:750px;
+  margin:auto;
+  color:#64748b;
+  font-size:18px;
+  line-height:1.6;
+}
+
+/* JOURNEY BAR */
+
+.journey{
+  max-width:850px;
+  margin:28px auto 0;
+  background:white;
+  padding:16px;
+  border-radius:18px;
+  box-shadow:0 7px 20px rgba(0,0,0,.07);
+}
+
+.journey-title{
+  font-size:13px;
+  color:#64748b;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.journey-steps{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.step{
+  background:#e0f2fe;
+  color:#0369a1;
+  padding:9px 4px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* SECTION */
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:35px 25px 60px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.section-title h2{
+  font-size:31px;
+  margin-bottom:8px;
+}
+
+.section-title p{
+  color:#64748b;
+}
+
+/* MISSION GRID */
+
+.mission-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+/* CARDS */
+
+.mission{
+  background:white;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(15,23,42,.08);
+  transition:.25s;
+  border:2px solid transparent;
+}
+
+.mission:hover{
+  transform:translateY(-6px);
+  border-color:#38bdf8;
+  box-shadow:0 15px 30px rgba(2,132,199,.15);
+}
+
+.visual{
+  height:180px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:72px;
+}
+
+.v1{background:linear-gradient(135deg,#cffafe,#bae6fd);}
+.v2{background:linear-gradient(135deg,#fef3c7,#fed7aa);}
+.v3{background:linear-gradient(135deg,#dcfce7,#bbf7d0);}
+.v4{background:linear-gradient(135deg,#ede9fe,#ddd6fe);}
+.v5{background:linear-gradient(135deg,#fee2e2,#fecaca);}
+.v6{background:linear-gradient(135deg,#fce7f3,#fbcfe8);}
+.v7{background:linear-gradient(135deg,#e0e7ff,#c7d2fe);}
+.v8{background:linear-gradient(135deg,#ccfbf1,#99f6e4);}
+.v9{background:linear-gradient(135deg,#fef9c3,#fde68a);}
+
+.mission-content{
+  padding:22px;
+}
+
+.mission-number{
+  font-size:12px;
+  color:#0284c7;
+  font-weight:900;
+  margin-bottom:7px;
+}
+
+.mission h3{
+  font-size:22px;
+  margin-bottom:9px;
+}
+
+.description{
+  color:#64748b;
+  line-height:1.5;
+  font-size:14px;
+  min-height:42px;
+}
+
+.example{
+  background:#f8fafc;
+  border-left:4px solid #38bdf8;
+  padding:11px;
+  margin:15px 0;
+  border-radius:7px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.start-btn{
+  width:100%;
+  border:0;
+  padding:12px;
+  border-radius:11px;
+  background:#0284c7;
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.start-btn:hover{
+  background:#0369a1;
+}
+
+/* FINAL */
+
+.final-card{
+  max-width:900px;
+  margin:45px auto 0;
+  background:linear-gradient(135deg,#075985,#0ea5e9);
+  color:white;
+  padding:35px;
+  border-radius:24px;
+  text-align:center;
+}
+
+.final-card h2{
+  margin-bottom:10px;
+}
+
+.final-card p{
+  line-height:1.6;
+  opacity:.95;
+}
+
+.final-example{
+  margin-top:18px;
+  padding:15px;
+  background:rgba(255,255,255,.15);
+  border-radius:12px;
+  font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#64748b;
+  font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .mission-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .mission-grid{
+    grid-template-columns:1fr;
+  }
+
+  .journey-steps{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:35px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="brand">
+    SENTENCE QUEST
+  </div>
+
+  <button class="home-btn" onclick="goHome()">
+    ← Home
+  </button>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="year-badge">
+    GET SMART PLUS 3
+  </div>
+
+  <h1>
+    YEAR 3 <span>MISSIONS</span>
+  </h1>
+
+  <p>
+    Choose a grammar mission. Look at colourful pictures,
+    learn useful words and build English sentences step by step.
+  </p>
+
+
+  <div class="journey">
+
+    <div class="journey-title">
+      YOUR SENTENCE JOURNEY
+    </div>
+
+    <div class="journey-steps">
+
+      <div class="step">
+        1 • WORD HUNT
+      </div>
+
+      <div class="step">
+        2 • PUZZLE
+      </div>
+
+      <div class="step">
+        3 • COMPLETE
+      </div>
+
+      <div class="step">
+        4 • BUILD
+      </div>
+
+      <div class="step">
+        5 • MY SENTENCE
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<main class="container">
+
+<div class="section-title">
+
+  <h2>Choose Your Grammar Mission</h2>
+
+  <p>
+    Each mission will help you build better English sentences.
+  </p>
+
+</div>
+
+
+<div class="mission-grid">
+
+
+<!-- MISSION 1 -->
+
+<div class="mission">
+
+  <div class="visual v1">
+    👦 📚
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 01
+    </div>
+
+    <h3>Nouns & Pronouns</h3>
+
+    <p class="description">
+      Learn how to name people, animals, places and things
+      and replace nouns with pronouns.
+    </p>
+
+    <div class="example">
+      Sarah is reading. → She is reading.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('nouns')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 2 -->
+
+<div class="mission">
+
+  <div class="visual v2">
+    🦒 🐘
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 02
+    </div>
+
+    <h3>Adjectives</h3>
+
+    <p class="description">
+      Use describing words to make sentences
+      more interesting.
+    </p>
+
+    <div class="example">
+      The giraffe is tall.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('adjectives')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 3 -->
+
+<div class="mission">
+
+  <div class="visual v3">
+    🐱 🪑
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 03
+    </div>
+
+    <h3>Prepositions</h3>
+
+    <p class="description">
+      Describe where people, animals and objects are.
+    </p>
+
+    <div class="example">
+      The cat is under the chair.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('prepositions')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 4 -->
+
+<div class="mission">
+
+  <div class="visual v4">
+    🕘 ⏰
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 04
+    </div>
+
+    <h3>Time</h3>
+
+    <p class="description">
+      Learn to talk about daily activities and time.
+    </p>
+
+    <div class="example">
+      I go to school at seven o'clock.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('time')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 5 -->
+
+<div class="mission">
+
+  <div class="visual v5">
+    ⚽ 🏃
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 05
+    </div>
+
+    <h3>Present Simple</h3>
+
+    <p class="description">
+      Talk about routines, habits and things we usually do.
+    </p>
+
+    <div class="example">
+      Adam plays football every Sunday.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('present-simple')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 6 -->
+
+<div class="mission">
+
+  <div class="visual v6">
+    👧 📖
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 06
+    </div>
+
+    <h3>Present Continuous</h3>
+
+    <p class="description">
+      Describe actions that are happening now.
+    </p>
+
+    <div class="example">
+      The girl is reading a book.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('present-continuous')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 7 -->
+
+<div class="mission">
+
+  <div class="visual v7">
+    🐦 ✈️
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 07
+    </div>
+
+    <h3>Modals</h3>
+
+    <p class="description">
+      Use words such as can and can't to talk
+      about abilities.
+    </p>
+
+    <div class="example">
+      A bird can fly.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('modals')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 8 -->
+
+<div class="mission">
+
+  <div class="visual v8">
+    🏖️ 📸
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 08
+    </div>
+
+    <h3>Past Tense</h3>
+
+    <p class="description">
+      Build sentences about things that happened
+      in the past.
+    </p>
+
+    <div class="example">
+      We visited the beach yesterday.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('past-tense')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MISSION 9 -->
+
+<div class="mission">
+
+  <div class="visual v9">
+    🍎 🍌
+  </div>
+
+  <div class="mission-content">
+
+    <div class="mission-number">
+      MISSION 09
+    </div>
+
+    <h3>Determiners & Quantifiers</h3>
+
+    <p class="description">
+      Use words such as a, an, some and many
+      correctly in sentences.
+    </p>
+
+    <div class="example">
+      There are some apples.
+    </div>
+
+    <button class="start-btn"
+    onclick="startMission('quantifiers')">
+      START MISSION
+    </button>
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+<!-- FINAL GOAL -->
+
+<div class="final-card">
+
+  <h2>🏆 YEAR 3 FINAL MISSION</h2>
+
+  <p>
+    After completing your grammar missions,
+    look at a picture and write a complete
+    English sentence by yourself.
+  </p>
+
+  <div class="final-example">
+    👧 + 📖 + 📚
+    <br><br>
+    The girl is reading a book in the library.
+  </div>
+
+</div>
+
+
+</main>
+
+
+<footer>
+
+Sentence Quest • Year 3
+<br>
+Interactive English Sentence Builder
+
+</footer>
+
+
+<script>
+
+function goHome(){
+
+  window.location.href="index.html";
+
+}
+
+
+function startMission(mission){
+
+  /*
+  We will create the actual quiz page next.
+
+  Example:
+  quiz.html?year=3&mission=prepositions
+  */
+
+  window.location.href =
+  "quiz.html?year=3&mission=" + mission;
+
+}
+
+</script>
+
+
+</body>
+</html>
