@@ -7,7 +7,6 @@
 <title>Year 3 | Sentence Quest</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -17,16 +16,14 @@
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at top left,#dff7ff 0,transparent 30%),
-    radial-gradient(circle at top right,#fff1c9 0,transparent 30%),
+    radial-gradient(circle at top left,#dff7ff,transparent 30%),
+    radial-gradient(circle at top right,#fff1c9,transparent 30%),
     #f4faff;
   color:#17324d;
   min-height:100vh;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   background:linear-gradient(135deg,#075985,#0284c7);
@@ -58,15 +55,12 @@ header{
   color:#075985;
 }
 
-
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   max-width:1100px;
   margin:auto;
-  padding:50px 25px 25px;
+  padding:45px 25px 25px;
   text-align:center;
 }
 
@@ -92,17 +86,14 @@ header{
 }
 
 .hero p{
-  max-width:750px;
+  max-width:760px;
   margin:auto;
   color:#64748b;
   font-size:18px;
   line-height:1.6;
 }
 
-
-/* =========================
-   JOURNEY
-========================= */
+/* JOURNEY */
 
 .journey{
   max-width:850px;
@@ -135,10 +126,7 @@ header{
   font-weight:bold;
 }
 
-
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 .container{
   max-width:1150px;
@@ -160,10 +148,7 @@ header{
   color:#64748b;
 }
 
-
-/* =========================
-   MISSION GRID
-========================= */
+/* GRID */
 
 .mission-grid{
   display:grid;
@@ -171,10 +156,7 @@ header{
   gap:22px;
 }
 
-
-/* =========================
-   MISSION CARD
-========================= */
+/* CARD */
 
 .mission{
   background:white;
@@ -187,7 +169,7 @@ header{
 }
 
 .mission:hover{
-  transform:translateY(-6px);
+  transform:translateY(-5px);
   border-color:#38bdf8;
   box-shadow:0 15px 30px rgba(2,132,199,.15);
 }
@@ -230,7 +212,7 @@ header{
   color:#64748b;
   line-height:1.5;
   font-size:14px;
-  min-height:63px;
+  min-height:62px;
 }
 
 .example{
@@ -246,82 +228,56 @@ header{
   align-items:center;
 }
 
+/* LABELS */
 
-/* =========================
-   BUTTONS
-========================= */
+.ready-label,
+.soon-label{
+  position:absolute;
+  top:12px;
+  right:12px;
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:900;
+  color:white;
+}
+
+.ready-label{
+  background:#16a34a;
+}
+
+.soon-label{
+  background:#64748b;
+}
+
+/* BUTTONS */
 
 .start-btn{
   width:100%;
   border:0;
   padding:13px;
   border-radius:11px;
-  background:#0284c7;
-  color:white;
   font-weight:900;
-  cursor:pointer;
   font-size:14px;
-  transition:.2s;
+  cursor:pointer;
 }
 
-.start-btn:hover{
-  background:#0369a1;
-}
-
-.preposition-btn{
+.login-btn{
   background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:white;
+  box-shadow:0 6px 15px rgba(34,197,94,.20);
 }
 
-.preposition-btn:hover{
+.login-btn:hover{
   background:linear-gradient(135deg,#15803d,#16a34a);
 }
 
 .coming-btn{
-  background:#cbd5e1;
-  color:#475569;
-  cursor:pointer;
+  background:#e2e8f0;
+  color:#64748b;
 }
 
-.coming-btn:hover{
-  background:#cbd5e1;
-}
-
-
-/* =========================
-   ACTIVE LABEL
-========================= */
-
-.ready-label{
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:#16a34a;
-  color:white;
-  padding:7px 11px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:900;
-  z-index:5;
-  box-shadow:0 4px 10px rgba(0,0,0,.12);
-}
-
-.soon-label{
-  position:absolute;
-  top:12px;
-  right:12px;
-  background:rgba(71,85,105,.85);
-  color:white;
-  padding:7px 11px;
-  border-radius:20px;
-  font-size:10px;
-  font-weight:900;
-  z-index:5;
-}
-
-
-/* =========================
-   FINAL MISSION
-========================= */
+/* FINAL */
 
 .final-card{
   max-width:900px;
@@ -331,7 +287,6 @@ header{
   padding:35px;
   border-radius:24px;
   text-align:center;
-  box-shadow:0 12px 30px rgba(2,132,199,.18);
 }
 
 .final-card h2{
@@ -340,7 +295,6 @@ header{
 
 .final-card p{
   line-height:1.6;
-  opacity:.95;
 }
 
 .final-example{
@@ -351,52 +305,35 @@ header{
   font-weight:bold;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#64748b;
-  font-size:13px;
-}
-
-
-/* =========================
-   MODAL
-========================= */
+/* POPUP */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
   background:rgba(15,23,42,.55);
-  z-index:100;
   align-items:center;
   justify-content:center;
   padding:20px;
+  z-index:100;
 }
 
 .modal-box{
   background:white;
-  max-width:420px;
   width:100%;
+  max-width:420px;
   border-radius:22px;
   padding:30px;
   text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,.2);
 }
 
 .modal-icon{
   font-size:55px;
-  margin-bottom:10px;
 }
 
 .modal-box h2{
   color:#075985;
-  margin-bottom:10px;
+  margin:10px 0;
 }
 
 .modal-box p{
@@ -405,27 +342,27 @@ footer{
 }
 
 .close-btn{
-  margin-top:20px;
   border:0;
   background:#0284c7;
   color:white;
-  padding:11px 24px;
+  padding:11px 25px;
   border-radius:10px;
   font-weight:bold;
+  margin-top:20px;
   cursor:pointer;
 }
 
-
-/* =========================
-   RESPONSIVE
-========================= */
+footer{
+  text-align:center;
+  padding:25px;
+  color:#64748b;
+  font-size:13px;
+}
 
 @media(max-width:900px){
-
   .mission-grid{
     grid-template-columns:repeat(2,1fr);
   }
-
 }
 
 @media(max-width:600px){
@@ -438,26 +375,15 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .hero{
-    padding-top:35px;
-  }
-
-  .description{
+  .description,
+  .example{
     min-height:auto;
   }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -465,19 +391,12 @@ footer{
     SENTENCE QUEST
   </div>
 
-  <button
-    class="home-btn"
-    onclick="goHome()">
-    ← Home
+  <button class="home-btn" onclick="goHome()">
+    ← HOME
   </button>
 
 </header>
 
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
@@ -490,8 +409,8 @@ footer{
   </h1>
 
   <p>
-    Choose a grammar mission. Look at colourful pictures,
-    learn useful words and build English sentences step by step.
+    Look at pictures, learn useful grammar and build
+    English sentences step by step.
   </p>
 
 
@@ -530,13 +449,7 @@ footer{
 </section>
 
 
-
-<!-- =========================
-     MISSIONS
-========================= -->
-
 <main class="container">
-
 
 <div class="section-title">
 
@@ -545,19 +458,16 @@ footer{
   </h2>
 
   <p>
-    Each mission will help you build better English sentences.
+    Start with Prepositions. More missions will be added soon.
   </p>
 
 </div>
 
 
-
 <div class="mission-grid">
 
 
-<!-- =========================
-     MISSION 1
-========================= -->
+<!-- 01 NOUNS -->
 
 <div class="mission">
 
@@ -580,8 +490,7 @@ footer{
     </h3>
 
     <p class="description">
-      Learn how to name people, animals, places and things,
-      and replace nouns with pronouns.
+      Learn how to name people, animals, places and things.
     </p>
 
     <div class="example">
@@ -591,9 +500,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Nouns & Pronouns')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -601,10 +508,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 2
-========================= -->
+<!-- 02 ADJECTIVES -->
 
 <div class="mission">
 
@@ -627,8 +531,7 @@ footer{
     </h3>
 
     <p class="description">
-      Use describing words to make your sentences
-      more interesting.
+      Use describing words to make sentences more interesting.
     </p>
 
     <div class="example">
@@ -638,9 +541,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Adjectives')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -648,10 +549,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 3 - PREPOSITIONS
-========================= -->
+<!-- 03 PREPOSITIONS -->
 
 <div class="mission">
 
@@ -674,24 +572,20 @@ footer{
     </h3>
 
     <p class="description">
-      Describe where people, animals and objects are
-      using prepositions of place.
+      Learn where people, animals and objects are.
     </p>
 
     <div class="example">
       The cat is under the chair.
     </div>
 
-
-    <!-- IMPORTANT:
-         THIS BUTTON GOES TO STUDENT LOGIN
-    -->
+    <!-- STUDENT LOGIN BUTTON -->
 
     <button
-      class="start-btn preposition-btn"
-      onclick="startPrepositions()">
+      class="start-btn login-btn"
+      onclick="studentLogin()">
 
-      START MISSION →
+      👤 STUDENT LOGIN →
 
     </button>
 
@@ -700,10 +594,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 4
-========================= -->
+<!-- 04 TIME -->
 
 <div class="mission">
 
@@ -726,8 +617,7 @@ footer{
     </h3>
 
     <p class="description">
-      Learn to talk about time and daily activities
-      using complete sentences.
+      Talk about time and daily activities.
     </p>
 
     <div class="example">
@@ -737,9 +627,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Time')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -747,10 +635,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 5
-========================= -->
+<!-- 05 PRESENT SIMPLE -->
 
 <div class="mission">
 
@@ -773,8 +658,7 @@ footer{
     </h3>
 
     <p class="description">
-      Talk about routines, habits and things
-      that happen regularly.
+      Talk about routines and habits.
     </p>
 
     <div class="example">
@@ -784,9 +668,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Present Simple')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -794,10 +676,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 6
-========================= -->
+<!-- 06 PRESENT CONTINUOUS -->
 
 <div class="mission">
 
@@ -820,8 +699,7 @@ footer{
     </h3>
 
     <p class="description">
-      Describe actions that are happening
-      right now.
+      Describe actions that are happening now.
     </p>
 
     <div class="example">
@@ -831,9 +709,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Present Continuous')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -841,10 +717,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 7
-========================= -->
+<!-- 07 MODALS -->
 
 <div class="mission">
 
@@ -867,8 +740,7 @@ footer{
     </h3>
 
     <p class="description">
-      Use words such as can and can't
-      to talk about abilities.
+      Use can and can't to talk about abilities.
     </p>
 
     <div class="example">
@@ -878,9 +750,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Modals')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -888,10 +758,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 8
-========================= -->
+<!-- 08 PAST TENSE -->
 
 <div class="mission">
 
@@ -914,8 +781,7 @@ footer{
     </h3>
 
     <p class="description">
-      Build sentences about things
-      that happened in the past.
+      Talk about things that happened in the past.
     </p>
 
     <div class="example">
@@ -925,9 +791,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Past Tense')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -935,10 +799,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     MISSION 9
-========================= -->
+<!-- 09 QUANTIFIERS -->
 
 <div class="mission">
 
@@ -961,8 +822,7 @@ footer{
     </h3>
 
     <p class="description">
-      Use words such as a, an, some and many
-      correctly in sentences.
+      Learn to use a, an, some, many and other useful words.
     </p>
 
     <div class="example">
@@ -972,9 +832,7 @@ footer{
     <button
       class="start-btn coming-btn"
       onclick="comingSoon('Determiners & Quantifiers')">
-
       COMING SOON
-
     </button>
 
   </div>
@@ -985,10 +843,7 @@ footer{
 </div>
 
 
-
-<!-- =========================
-     FINAL MISSION
-========================= -->
+<!-- FINAL -->
 
 <div class="final-card">
 
@@ -997,9 +852,8 @@ footer{
   </h2>
 
   <p>
-    Complete your grammar missions and develop your skills
-    until you can look at a picture and write a complete
-    English sentence independently.
+    Complete the grammar missions until you can look
+    at a picture and write your own English sentence.
   </p>
 
   <div class="final-example">
@@ -1014,30 +868,19 @@ footer{
 
 </div>
 
-
 </main>
 
 
-
 <footer>
-
   Sentence Quest • Year 3
-
   <br>
-
   Interactive English Sentence Builder
-
 </footer>
 
 
+<!-- COMING SOON POPUP -->
 
-<!-- =========================
-     COMING SOON POPUP
-========================= -->
-
-<div
-  class="modal"
-  id="comingModal">
+<div class="modal" id="comingModal">
 
   <div class="modal-box">
 
@@ -1046,20 +889,18 @@ footer{
     </div>
 
     <h2 id="modalTitle">
-      Mission Coming Soon
+      Coming Soon
     </h2>
 
     <p>
-      This grammar mission is being prepared.
-      Try the Prepositions Mission first.
+      This mission is still being prepared.
+      Please try the Prepositions Mission.
     </p>
 
     <button
       class="close-btn"
       onclick="closeModal()">
-
       OK
-
     </button>
 
   </div>
@@ -1067,12 +908,9 @@ footer{
 </div>
 
 
-
 <script>
 
-/* =========================
-   HOME
-========================= */
+/* HOME */
 
 function goHome(){
 
@@ -1082,18 +920,17 @@ function goHome(){
 }
 
 
-/* =========================
+/* ==============================
+   STUDENT LOGIN
+
    PREPOSITIONS
+================================ */
 
-   IMPORTANT:
-   GO TO STUDENT LOGIN FIRST
-========================= */
-
-function startPrepositions(){
+function studentLogin(){
 
   /*
-    Clear old student information
-    before a new pupil starts.
+    Remove previous student's
+    temporary information.
   */
 
   localStorage.removeItem(
@@ -1104,9 +941,20 @@ function startPrepositions(){
     "sentenceQuestStudentClass"
   );
 
+  localStorage.setItem(
+    "sentenceQuestYear",
+    "3"
+  );
+
+  localStorage.setItem(
+    "sentenceQuestMission",
+    "Prepositions"
+  );
+
 
   /*
-    Open Student Login
+    IMPORTANT:
+    OPEN STUDENT.HTML
   */
 
   window.location.href =
@@ -1115,16 +963,14 @@ function startPrepositions(){
 }
 
 
-/* =========================
-   COMING SOON
-========================= */
+/* COMING SOON */
 
-function comingSoon(missionName){
+function comingSoon(name){
 
   document
   .getElementById("modalTitle")
   .innerText =
-  missionName + " – Coming Soon";
+  name + " – Coming Soon";
 
   document
   .getElementById("comingModal")
@@ -1134,9 +980,7 @@ function comingSoon(missionName){
 }
 
 
-/* =========================
-   CLOSE POPUP
-========================= */
+/* CLOSE MODAL */
 
 function closeModal(){
 
@@ -1148,9 +992,7 @@ function closeModal(){
 }
 
 
-/* =========================
-   CLICK OUTSIDE POPUP
-========================= */
+/* CLICK OUTSIDE MODAL */
 
 window.onclick =
 function(event){
@@ -1168,26 +1010,7 @@ function(event){
 
 };
 
-
-/* =========================
-   ESC CLOSE POPUP
-========================= */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Escape"){
-
-      closeModal();
-
-    }
-
-  }
-);
-
 </script>
-
 
 </body>
 </html>
