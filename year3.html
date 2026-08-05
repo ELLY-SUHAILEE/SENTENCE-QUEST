@@ -24,7 +24,9 @@ body{
   min-height:100vh;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
   background:linear-gradient(135deg,#075985,#0284c7);
@@ -56,7 +58,10 @@ header{
   color:#075985;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
   max-width:1100px;
@@ -94,7 +99,10 @@ header{
   line-height:1.6;
 }
 
-/* JOURNEY BAR */
+
+/* =========================
+   JOURNEY
+========================= */
 
 .journey{
   max-width:850px;
@@ -127,7 +135,10 @@ header{
   font-weight:bold;
 }
 
-/* SECTION */
+
+/* =========================
+   MAIN
+========================= */
 
 .container{
   max-width:1150px;
@@ -149,7 +160,10 @@ header{
   color:#64748b;
 }
 
-/* MISSION GRID */
+
+/* =========================
+   MISSION GRID
+========================= */
 
 .mission-grid{
   display:grid;
@@ -157,7 +171,10 @@ header{
   gap:22px;
 }
 
-/* CARDS */
+
+/* =========================
+   MISSION CARD
+========================= */
 
 .mission{
   background:white;
@@ -166,6 +183,7 @@ header{
   box-shadow:0 8px 25px rgba(15,23,42,.08);
   transition:.25s;
   border:2px solid transparent;
+  position:relative;
 }
 
 .mission:hover{
@@ -212,7 +230,7 @@ header{
   color:#64748b;
   line-height:1.5;
   font-size:14px;
-  min-height:42px;
+  min-height:63px;
 }
 
 .example{
@@ -223,25 +241,87 @@ header{
   border-radius:7px;
   font-size:14px;
   font-weight:bold;
+  min-height:58px;
+  display:flex;
+  align-items:center;
 }
+
+
+/* =========================
+   BUTTONS
+========================= */
 
 .start-btn{
   width:100%;
   border:0;
-  padding:12px;
+  padding:13px;
   border-radius:11px;
   background:#0284c7;
   color:white;
   font-weight:900;
   cursor:pointer;
   font-size:14px;
+  transition:.2s;
 }
 
 .start-btn:hover{
   background:#0369a1;
 }
 
-/* FINAL */
+.preposition-btn{
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+}
+
+.preposition-btn:hover{
+  background:linear-gradient(135deg,#15803d,#16a34a);
+}
+
+.coming-btn{
+  background:#cbd5e1;
+  color:#475569;
+  cursor:pointer;
+}
+
+.coming-btn:hover{
+  background:#cbd5e1;
+}
+
+
+/* =========================
+   ACTIVE LABEL
+========================= */
+
+.ready-label{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#16a34a;
+  color:white;
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:900;
+  z-index:5;
+  box-shadow:0 4px 10px rgba(0,0,0,.12);
+}
+
+.soon-label{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:rgba(71,85,105,.85);
+  color:white;
+  padding:7px 11px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:900;
+  z-index:5;
+}
+
+
+/* =========================
+   FINAL MISSION
+========================= */
 
 .final-card{
   max-width:900px;
@@ -251,6 +331,7 @@ header{
   padding:35px;
   border-radius:24px;
   text-align:center;
+  box-shadow:0 12px 30px rgba(2,132,199,.18);
 }
 
 .final-card h2{
@@ -270,7 +351,10 @@ header{
   font-weight:bold;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   text-align:center;
@@ -279,7 +363,62 @@ footer{
   font-size:13px;
 }
 
-/* MOBILE */
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.55);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  background:white;
+  max-width:420px;
+  width:100%;
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+.modal-icon{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+.modal-box h2{
+  color:#075985;
+  margin-bottom:10px;
+}
+
+.modal-box p{
+  color:#64748b;
+  line-height:1.6;
+}
+
+.close-btn{
+  margin-top:20px;
+  border:0;
+  background:#0284c7;
+  color:white;
+  padding:11px 24px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:900px){
 
@@ -303,12 +442,22 @@ footer{
     padding-top:35px;
   }
 
+  .description{
+    min-height:auto;
+  }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -316,12 +465,19 @@ footer{
     SENTENCE QUEST
   </div>
 
-  <button class="home-btn" onclick="goHome()">
+  <button
+    class="home-btn"
+    onclick="goHome()">
     ← Home
   </button>
 
 </header>
 
+
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
@@ -374,11 +530,19 @@ footer{
 </section>
 
 
+
+<!-- =========================
+     MISSIONS
+========================= -->
+
 <main class="container">
+
 
 <div class="section-title">
 
-  <h2>Choose Your Grammar Mission</h2>
+  <h2>
+    Choose Your Grammar Mission
+  </h2>
 
   <p>
     Each mission will help you build better English sentences.
@@ -387,12 +551,19 @@ footer{
 </div>
 
 
+
 <div class="mission-grid">
 
 
-<!-- MISSION 1 -->
+<!-- =========================
+     MISSION 1
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v1">
     👦 📚
@@ -404,10 +575,12 @@ footer{
       MISSION 01
     </div>
 
-    <h3>Nouns & Pronouns</h3>
+    <h3>
+      Nouns & Pronouns
+    </h3>
 
     <p class="description">
-      Learn how to name people, animals, places and things
+      Learn how to name people, animals, places and things,
       and replace nouns with pronouns.
     </p>
 
@@ -415,9 +588,12 @@ footer{
       Sarah is reading. → She is reading.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('nouns')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Nouns & Pronouns')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -425,9 +601,16 @@ footer{
 </div>
 
 
-<!-- MISSION 2 -->
+
+<!-- =========================
+     MISSION 2
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v2">
     🦒 🐘
@@ -439,10 +622,12 @@ footer{
       MISSION 02
     </div>
 
-    <h3>Adjectives</h3>
+    <h3>
+      Adjectives
+    </h3>
 
     <p class="description">
-      Use describing words to make sentences
+      Use describing words to make your sentences
       more interesting.
     </p>
 
@@ -450,9 +635,12 @@ footer{
       The giraffe is tall.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('adjectives')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Adjectives')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -460,9 +648,16 @@ footer{
 </div>
 
 
-<!-- MISSION 3 -->
+
+<!-- =========================
+     MISSION 3 - PREPOSITIONS
+========================= -->
 
 <div class="mission">
+
+  <div class="ready-label">
+    READY ✓
+  </div>
 
   <div class="visual v3">
     🐱 🪑
@@ -474,19 +669,30 @@ footer{
       MISSION 03
     </div>
 
-    <h3>Prepositions</h3>
+    <h3>
+      Prepositions
+    </h3>
 
     <p class="description">
-      Describe where people, animals and objects are.
+      Describe where people, animals and objects are
+      using prepositions of place.
     </p>
 
     <div class="example">
       The cat is under the chair.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('prepositions')">
-      START MISSION
+
+    <!-- IMPORTANT:
+         THIS BUTTON GOES TO STUDENT LOGIN
+    -->
+
+    <button
+      class="start-btn preposition-btn"
+      onclick="startPrepositions()">
+
+      START MISSION →
+
     </button>
 
   </div>
@@ -494,9 +700,16 @@ footer{
 </div>
 
 
-<!-- MISSION 4 -->
+
+<!-- =========================
+     MISSION 4
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v4">
     🕘 ⏰
@@ -508,19 +721,25 @@ footer{
       MISSION 04
     </div>
 
-    <h3>Time</h3>
+    <h3>
+      Time
+    </h3>
 
     <p class="description">
-      Learn to talk about daily activities and time.
+      Learn to talk about time and daily activities
+      using complete sentences.
     </p>
 
     <div class="example">
       I go to school at seven o'clock.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('time')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Time')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -528,9 +747,16 @@ footer{
 </div>
 
 
-<!-- MISSION 5 -->
+
+<!-- =========================
+     MISSION 5
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v5">
     ⚽ 🏃
@@ -542,19 +768,25 @@ footer{
       MISSION 05
     </div>
 
-    <h3>Present Simple</h3>
+    <h3>
+      Present Simple
+    </h3>
 
     <p class="description">
-      Talk about routines, habits and things we usually do.
+      Talk about routines, habits and things
+      that happen regularly.
     </p>
 
     <div class="example">
       Adam plays football every Sunday.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('present-simple')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Present Simple')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -562,9 +794,16 @@ footer{
 </div>
 
 
-<!-- MISSION 6 -->
+
+<!-- =========================
+     MISSION 6
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v6">
     👧 📖
@@ -576,19 +815,25 @@ footer{
       MISSION 06
     </div>
 
-    <h3>Present Continuous</h3>
+    <h3>
+      Present Continuous
+    </h3>
 
     <p class="description">
-      Describe actions that are happening now.
+      Describe actions that are happening
+      right now.
     </p>
 
     <div class="example">
       The girl is reading a book.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('present-continuous')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Present Continuous')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -596,9 +841,16 @@ footer{
 </div>
 
 
-<!-- MISSION 7 -->
+
+<!-- =========================
+     MISSION 7
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v7">
     🐦 ✈️
@@ -610,20 +862,25 @@ footer{
       MISSION 07
     </div>
 
-    <h3>Modals</h3>
+    <h3>
+      Modals
+    </h3>
 
     <p class="description">
-      Use words such as can and can't to talk
-      about abilities.
+      Use words such as can and can't
+      to talk about abilities.
     </p>
 
     <div class="example">
       A bird can fly.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('modals')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Modals')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -631,9 +888,16 @@ footer{
 </div>
 
 
-<!-- MISSION 8 -->
+
+<!-- =========================
+     MISSION 8
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v8">
     🏖️ 📸
@@ -645,20 +909,25 @@ footer{
       MISSION 08
     </div>
 
-    <h3>Past Tense</h3>
+    <h3>
+      Past Tense
+    </h3>
 
     <p class="description">
-      Build sentences about things that happened
-      in the past.
+      Build sentences about things
+      that happened in the past.
     </p>
 
     <div class="example">
       We visited the beach yesterday.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('past-tense')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Past Tense')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -666,9 +935,16 @@ footer{
 </div>
 
 
-<!-- MISSION 9 -->
+
+<!-- =========================
+     MISSION 9
+========================= -->
 
 <div class="mission">
+
+  <div class="soon-label">
+    COMING SOON
+  </div>
 
   <div class="visual v9">
     🍎 🍌
@@ -680,7 +956,9 @@ footer{
       MISSION 09
     </div>
 
-    <h3>Determiners & Quantifiers</h3>
+    <h3>
+      Determiners & Quantifiers
+    </h3>
 
     <p class="description">
       Use words such as a, an, some and many
@@ -691,9 +969,12 @@ footer{
       There are some apples.
     </div>
 
-    <button class="start-btn"
-    onclick="startMission('quantifiers')">
-      START MISSION
+    <button
+      class="start-btn coming-btn"
+      onclick="comingSoon('Determiners & Quantifiers')">
+
+      COMING SOON
+
     </button>
 
   </div>
@@ -704,22 +985,31 @@ footer{
 </div>
 
 
-<!-- FINAL GOAL -->
+
+<!-- =========================
+     FINAL MISSION
+========================= -->
 
 <div class="final-card">
 
-  <h2>🏆 YEAR 3 FINAL MISSION</h2>
+  <h2>
+    🏆 YEAR 3 FINAL MISSION
+  </h2>
 
   <p>
-    After completing your grammar missions,
-    look at a picture and write a complete
-    English sentence by yourself.
+    Complete your grammar missions and develop your skills
+    until you can look at a picture and write a complete
+    English sentence independently.
   </p>
 
   <div class="final-example">
+
     👧 + 📖 + 📚
+
     <br><br>
+
     The girl is reading a book in the library.
+
   </div>
 
 </div>
@@ -728,37 +1018,173 @@ footer{
 </main>
 
 
+
 <footer>
 
-Sentence Quest • Year 3
-<br>
-Interactive English Sentence Builder
+  Sentence Quest • Year 3
+
+  <br>
+
+  Interactive English Sentence Builder
 
 </footer>
 
 
+
+<!-- =========================
+     COMING SOON POPUP
+========================= -->
+
+<div
+  class="modal"
+  id="comingModal">
+
+  <div class="modal-box">
+
+    <div class="modal-icon">
+      🚧
+    </div>
+
+    <h2 id="modalTitle">
+      Mission Coming Soon
+    </h2>
+
+    <p>
+      This grammar mission is being prepared.
+      Try the Prepositions Mission first.
+    </p>
+
+    <button
+      class="close-btn"
+      onclick="closeModal()">
+
+      OK
+
+    </button>
+
+  </div>
+
+</div>
+
+
+
 <script>
+
+/* =========================
+   HOME
+========================= */
 
 function goHome(){
 
-  window.location.href="index.html";
+  window.location.href =
+  "index.html";
 
 }
 
 
-function startMission(mission){
+/* =========================
+   PREPOSITIONS
+
+   IMPORTANT:
+   GO TO STUDENT LOGIN FIRST
+========================= */
+
+function startPrepositions(){
 
   /*
-  We will create the actual quiz page next.
+    Clear old student information
+    before a new pupil starts.
+  */
 
-  Example:
-  quiz.html?year=3&mission=prepositions
+  localStorage.removeItem(
+    "sentenceQuestStudentName"
+  );
+
+  localStorage.removeItem(
+    "sentenceQuestStudentClass"
+  );
+
+
+  /*
+    Open Student Login
   */
 
   window.location.href =
-  "quiz.html?year=3&mission=" + mission;
+  "student.html";
 
 }
+
+
+/* =========================
+   COMING SOON
+========================= */
+
+function comingSoon(missionName){
+
+  document
+  .getElementById("modalTitle")
+  .innerText =
+  missionName + " – Coming Soon";
+
+  document
+  .getElementById("comingModal")
+  .style.display =
+  "flex";
+
+}
+
+
+/* =========================
+   CLOSE POPUP
+========================= */
+
+function closeModal(){
+
+  document
+  .getElementById("comingModal")
+  .style.display =
+  "none";
+
+}
+
+
+/* =========================
+   CLICK OUTSIDE POPUP
+========================= */
+
+window.onclick =
+function(event){
+
+  const modal =
+  document.getElementById(
+    "comingModal"
+  );
+
+  if(event.target === modal){
+
+    closeModal();
+
+  }
+
+};
+
+
+/* =========================
+   ESC CLOSE POPUP
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      closeModal();
+
+    }
+
+  }
+);
 
 </script>
 
