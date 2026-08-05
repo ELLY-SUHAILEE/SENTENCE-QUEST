@@ -34,15 +34,38 @@ th{background:#f8fafc;color:#475569;position:sticky;top:0}
 .badge{display:inline-block;padding:6px 9px;border-radius:20px;font-size:11px;font-weight:900}
 .independent{background:#dcfce7;color:#166534}.developing{background:#fef3c7;color:#92400e}.support{background:#fee2e2;color:#991b1b}
 .empty{text-align:center;padding:35px;color:#64748b}.footer-note{text-align:center;color:#94a3b8;font-size:12px;padding:8px}
+
+.login-overlay{position:fixed;inset:0;background:linear-gradient(135deg,#075985,#0ea5e9);display:flex;align-items:center;justify-content:center;padding:20px;z-index:9999}
+.login-box{width:min(420px,100%);background:#fff;border-radius:22px;padding:30px;box-shadow:0 20px 55px rgba(0,0,0,.22);text-align:center}
+.login-icon{font-size:50px}.login-box h1{color:#075985;margin:10px 0 6px}.login-box p{color:#64748b;margin-bottom:18px}
+.pin-input{text-align:center;font-size:24px;letter-spacing:8px;font-weight:900}
+.login-btn{width:100%;margin-top:12px;background:#075985;color:#fff;border:0;border-radius:11px;padding:13px;font-weight:900;cursor:pointer}
+.login-message{min-height:22px;margin-top:12px;font-size:13px;font-weight:900}
+.dashboard-content{display:none}
+.logout{background:#fee2e2;color:#991b1b}
+
 @media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.skills{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){header{align-items:flex-start;gap:10px;flex-direction:column}.wrapper{padding:12px}.cards,.filters,.skills{grid-template-columns:1fr}.hero h1{font-size:25px}}
 </style>
 </head>
 <body>
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <h1>Teacher Access</h1>
+    <p>Enter the Teacher PIN to open the Sentence Quest dashboard.</p>
+    <input class="pin-input" id="teacherPin" type="password" inputmode="numeric" maxlength="6" placeholder="••••" onkeydown="if(event.key==='Enter') teacherLogin()">
+    <button class="login-btn" id="loginBtn" onclick="teacherLogin()">LOGIN</button>
+    <div class="login-message" id="loginMessage"></div>
+  </div>
+</div>
+
+<div class="dashboard-content" id="dashboardContent">
 <header>
   <div class="brand">📖 SENTENCE QUEST • TEACHER</div>
   <div class="header-right">
     <button class="btn refresh" onclick="loadRecords()">↻ REFRESH DATA</button>
+    <button class="btn logout" onclick="teacherLogout()">LOGOUT</button>
     <button class="btn back" onclick="goHome()">← HOME</button>
   </div>
 </header>
@@ -100,15 +123,71 @@ th{background:#f8fafc;color:#475569;position:sticky;top:0}
 </div>
 
 <script>
-const API_URL = "https://script.google.com/macros/s/AKfycby84aD1yrCse0CKs78jKTG_bDAhA42TlsCjLJsRL3PkDEhXZadGcmu-moxorgP_IXN8/exec?action=records";
+const API_BASE = "https://script.google.com/macros/s/AKfycby84aD1yrCse0CKs78jKTG_bDAhA42TlsCjLJsRL3PkDEhXZadGcmu-moxorgP_IXN8/exec";
+let teacherPinSession = "";
 let allRecords = [];
 let filteredRecords = [];
+
+
+async function teacherLogin(){
+  const pinInput = document.getElementById("teacherPin");
+  const message = document.getElementById("loginMessage");
+  const button = document.getElementById("loginBtn");
+  const pin = pinInput.value.trim();
+
+  if(!pin){
+    message.innerText = "Please enter the Teacher PIN.";
+    message.style.color = "#991b1b";
+    return;
+  }
+
+  button.disabled = true;
+  button.innerText = "CHECKING...";
+  message.innerText = "Verifying teacher access...";
+  message.style.color = "#64748b";
+
+  try{
+    const response = await fetch(API_BASE + "?action=login&pin=" + encodeURIComponent(pin) + "&t=" + Date.now(), {cache:"no-store"});
+    const data = await response.json();
+
+    if(data.status === "success" && data.authenticated === true){
+      teacherPinSession = pin;
+      pinInput.value = "";
+      document.getElementById("loginOverlay").style.display = "none";
+      document.getElementById("dashboardContent").style.display = "block";
+      message.innerText = "";
+      await loadRecords();
+    }else{
+      message.innerText = "Incorrect Teacher PIN.";
+      message.style.color = "#991b1b";
+      pinInput.select();
+    }
+  }catch(error){
+    console.error(error);
+    message.innerText = "Unable to verify access. Please try again.";
+    message.style.color = "#991b1b";
+  }finally{
+    button.disabled = false;
+    button.innerText = "LOGIN";
+  }
+}
+
+function teacherLogout(){
+  teacherPinSession = "";
+  allRecords = [];
+  filteredRecords = [];
+  document.getElementById("dashboardContent").style.display = "none";
+  document.getElementById("loginOverlay").style.display = "flex";
+  document.getElementById("teacherPin").value = "";
+  document.getElementById("loginMessage").innerText = "";
+  setTimeout(()=>document.getElementById("teacherPin").focus(),100);
+}
 
 async function loadRecords(){
   const status = document.getElementById("connectionStatus");
   status.innerHTML = "⏳ Loading student records...";
   try{
-    const response = await fetch(API_URL + "&t=" + Date.now(), {cache:"no-store"});
+    const response = await fetch(API_BASE + "?action=records&pin=" + encodeURIComponent(teacherPinSession) + "&t=" + Date.now(), {cache:"no-store"});
     const data = await response.json();
     if(data.status !== "success") throw new Error(data.message || "API error");
     allRecords = Array.isArray(data.records) ? data.records : [];
@@ -229,7 +308,8 @@ function goHome(){
   window.location.href = "index.html";
 }
 
-loadRecords();
+document.getElementById("teacherPin").focus();
 </script>
+</div>
 </body>
 </html>
