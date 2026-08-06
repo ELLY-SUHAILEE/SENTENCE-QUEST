@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prepositions Mission | Sentence Quest</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#e0f2fe,#f8fafc,#fff7ed);
+  color:#17324d;
+  min-height:100vh;
+}
+
+header{
+  background:linear-gradient(135deg,#075985,#0284c7);
+  color:white;
+  padding:13px 4%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.12);
+}
+
+.brand{
+  font-size:21px;
+  font-weight:900;
+}
+
+.back-btn{
+  border:1px solid rgba(255,255,255,.5);
+  background:rgba(255,255,255,.15);
+  color:white;
+  padding:9px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.wrapper{
+  max-width:1200px;
+  margin:auto;
+  padding:15px 22px 30px;
+}
+
+.student-bar{
+  background:white;
+  border-radius:14px;
+  padding:11px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:13px;
+  box-shadow:0 5px 15px rgba(15,23,42,.08);
+}
+
+.student-item{
+  font-size:14px;
+  color:#64748b;
+}
+
+.student-item strong{
+  color:#075985;
+  font-size:15px;
+}
+
+.mission-title{
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.badge{
+  display:inline-block;
+  background:#dcfce7;
+  color:#166534;
+  padding:5px 13px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.mission-title h1{
+  color:#075985;
+  font-size:32px;
+  line-height:1;
+}
+
+.mission-title p{
+  color:#64748b;
+  margin-top:6px;
+  font-size:14px;
+}
+
+.level-map{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin:13px 0;
+}
+
+.level-step{
+  background:white;
+  color:#94a3b8;
+  padding:9px 5px;
+  border-radius:9px;
+  text-align:center;
+  font-size:11px;
+  font-weight:900;
+  border:1px solid #e2e8f0;
+}
+
+.level-step.active{
+  background:#0284c7;
+  color:white;
+  border-color:#0284c7;
+}
+
+.level-step.done{
+  background:#dcfce7;
+  color:#166534;
+  border-color:#86efac;
+}
+
+.status-box{
+  background:white;
+  padding:10px 16px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(15,23,42,.06);
+  margin-bottom:10px;
+}
+
+.status-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:7px;
+}
+
+.progress{
+  width:100%;
+  height:11px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:2%;
+  background:linear-gradient(90deg,#22c55e,#0ea5e9);
+  transition:.35s;
+}
+
+.quiz-card{
+  background:white;
+  border-radius:20px;
+  padding:17px 25px 20px;
+  box-shadow:0 8px 25px rgba(15,23,42,.11);
+}
+
+.level-label{
+  text-align:center;
+  color:#0284c7;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.question{
+  text-align:center;
+  font-size:25px;
+  margin:5px 0 12px;
+  line-height:1.3;
+  color:#172554;
+}
+
+/* PICTURE */
+
+.picture-frame{
+  width:100%;
+  max-width:540px;
+  margin:0 auto 15px;
+  background:white;
+  border:2px solid #38bdf8;
+  border-radius:16px;
+  padding:7px;
+  box-shadow:0 5px 15px rgba(15,23,42,.08);
+}
+
+.picture{
+  width:100%;
+  height:260px;
+  border-radius:11px;
+  overflow:hidden;
+  background:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.picture img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  border-radius:9px;
+}
+
+.picture-label{
+  text-align:center;
+  margin-top:6px;
+  padding:6px;
+  background:#e0f2fe;
+  color:#075985;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:900;
+}
+
+/* ANSWERS */
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.answer{
+  border:2px solid #bfdbfe;
+  background:#ffffff;
+  padding:13px 16px;
+  border-radius:12px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+  line-height:1.3;
+  min-height:52px;
+}
+
+.answer:hover{
+  border-color:#38bdf8;
+  background:#f0f9ff;
+  transform:translateY(-1px);
+}
+
+.answer.correct{
+  background:#dcfce7;
+  border-color:#22c55e;
+  color:#166534;
+}
+
+.answer.wrong{
+  background:#fee2e2;
+  border-color:#ef4444;
+  color:#991b1b;
+}
+
+.feedback{
+  display:none;
+  text-align:center;
+  margin:11px auto 0;
+  max-width:1000px;
+  padding:10px;
+  border-radius:10px;
+  font-weight:bold;
+  line-height:1.5;
+}
+
+.feedback.good{
+  display:block;
+  background:#dcfce7;
+  color:#166534;
+}
+
+.feedback.bad{
+  display:block;
+  background:#fff7ed;
+  color:#9a3412;
+}
+
+.feedback.learn{
+  display:block;
+  background:#e0f2fe;
+  color:#075985;
+}
+
+.hint{
+  display:none;
+  text-align:center;
+  background:#fffbeb;
+  color:#92400e;
+  padding:10px;
+  margin:10px auto 0;
+  max-width:1000px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.controls{
+  display:flex;
+  gap:12px;
+  margin:13px auto 0;
+  max-width:800px;
+}
+
+.hint-btn,
+.next-btn{
+  flex:1;
+  padding:12px;
+  border:0;
+  border-radius:11px;
+  font-weight:900;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.hint-btn{
+  background:#fef3c7;
+  color:#92400e;
+  border:1px solid #fbbf24;
+}
+
+.next-btn{
+  display:none;
+  background:#0284c7;
+  color:white;
+}
+
+/* WRITING */
+
+.write-box{
+  grid-column:1/-1;
+}
+
+.write-box textarea{
+  width:100%;
+  min-height:95px;
+  resize:none;
+  border:2px solid #bae6fd;
+  border-radius:12px;
+  padding:13px;
+  font-size:18px;
+  outline:none;
+}
+
+.check-btn{
+  width:100%;
+  margin-top:8px;
+  padding:12px;
+  border:0;
+  border-radius:11px;
+  background:#22c55e;
+  color:white;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.small-note{
+  text-align:center;
+  color:#64748b;
+  margin-top:7px;
+  font-size:12px;
+}
+
+/* RESULT */
+
+.result{
+  text-align:center;
+  padding:20px 5px;
+}
+
+.trophy{
+  font-size:65px;
+}
+
+.result h1{
+  color:#075985;
+  margin-bottom:8px;
+}
+
+.student-result{
+  max-width:600px;
+  margin:17px auto;
+  background:#f0f9ff;
+  border-radius:15px;
+  padding:14px;
+}
+
+.student-result-row{
+  display:flex;
+  justify-content:space-between;
+  padding:7px 5px;
+  border-bottom:1px dashed #bae6fd;
+}
+
+.student-result-row:last-child{
+  border-bottom:none;
+}
+
+.total-score{
+  font-size:40px;
+  color:#16a34a;
+  font-weight:900;
+  margin:15px 0 3px;
+}
+
+.percentage{
+  color:#64748b;
+  margin-bottom:12px;
+}
+
+.mastery{
+  display:inline-block;
+  padding:9px 20px;
+  border-radius:30px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.mastered{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.developing{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.support{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.result-table{
+  width:100%;
+  max-width:760px;
+  margin:17px auto;
+  border-collapse:collapse;
+}
+
+.result-table th,
+.result-table td{
+  padding:10px;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.result-table th{
+  background:#f8fafc;
+}
+
+.save-status{
+  margin:15px auto;
+  padding:12px;
+  max-width:520px;
+  background:#f0fdf4;
+  border-radius:10px;
+  font-weight:bold;
+  color:#166534;
+}
+
+.return-btn{
+  margin-top:15px;
+  border:0;
+  padding:13px 24px;
+  border-radius:11px;
+  background:#0284c7;
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+}
+
+@media(max-width:700px){
+
+  .wrapper{
+    padding:10px;
+  }
+
+  .student-bar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .mission-title h1{
+    font-size:27px;
+  }
+
+  .level-map{
+    grid-template-columns:repeat(5,1fr);
+  }
+
+  .level-step{
+    font-size:8px;
+    padding:8px 2px;
+  }
+
+  .quiz-card{
+    padding:13px;
+  }
+
+  .question{
+    font-size:21px;
+  }
+
+  .picture-frame{
+    max-width:100%;
+  }
+
+  .picture{
+    height:220px;
+  }
+
+  .answers{
+    grid-template-columns:1fr;
+  }
+
+  .controls{
+    flex-direction:column;
+  }
+}
+
+@media(max-width:430px){
+
+  .picture{
+    height:190px;
+  }
+
+  .mission-title h1{
+    font-size:24px;
+  }
+
+  .question{
+    font-size:19px;
+  }
+
+  .answer{
+    font-size:16px;
+    padding:11px;
+  }
+}
+
+
+.myday-scene{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding:14px;
+  background:linear-gradient(135deg,#eff6ff,#fff7ed);
+}
+.routine-visual{
+  min-width:180px;
+  text-align:center;
+}
+.routine-emoji{
+  font-size:92px;
+  line-height:1;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.12));
+}
+.subject-chip{
+  display:inline-block;
+  margin-top:10px;
+  padding:7px 14px;
+  border-radius:20px;
+  background:white;
+  color:#075985;
+  font-weight:900;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+.clock-wrap{
+  width:190px;
+  height:190px;
+  flex:0 0 190px;
+}
+.clock-wrap svg{
+  width:100%;
+  height:100%;
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.13));
+}
+@media(max-width:700px){
+  .myday-scene{gap:12px;padding:8px}
+  .routine-visual{min-width:120px}
+  .routine-emoji{font-size:66px}
+  .clock-wrap{width:135px;height:135px;flex-basis:135px}
+}
+@media(max-width:430px){
+  .routine-emoji{font-size:56px}
+  .clock-wrap{width:115px;height:115px;flex-basis:115px}
+  .subject-chip{font-size:12px}
+}
+
+
+.world-scene{
+  width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;
+  gap:22px;padding:18px;background:linear-gradient(#dff7ff 0 66%,#d9f99d 66%);
+}
+.world-item{text-align:center;min-width:90px}
+.world-emoji{font-size:72px;line-height:1;filter:drop-shadow(0 5px 5px rgba(0,0,0,.12))}
+.world-label{margin-top:8px;background:rgba(255,255,255,.92);padding:6px 10px;border-radius:16px;
+font-size:12px;font-weight:900;color:#075985}
+.size-big .world-emoji{font-size:100px}.size-small .world-emoji{font-size:50px}
+.size-tall .world-emoji{font-size:105px}.size-short .world-emoji{font-size:52px}
+@media(max-width:600px){
+ .world-scene{gap:8px;padding:10px}.world-item{min-width:65px}
+ .world-emoji{font-size:55px}.size-big .world-emoji,.size-tall .world-emoji{font-size:75px}
+ .size-small .world-emoji,.size-short .world-emoji{font-size:40px}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="brand">
+    📖 SENTENCE QUEST
+  </div>
+
+  <button
+    class="back-btn"
+    onclick="goBack()">
+    ← YEAR 3
+  </button>
+
+</header>
+
+
+<div class="wrapper">
+
+<div class="student-bar">
+
+  <div class="student-item">
+    👤 Student:
+    <strong id="displayName">Student</strong>
+  </div>
+
+  <div class="student-item">
+    🏫 Class:
+    <strong id="displayClass">Class</strong>
+  </div>
+
+  <div class="student-item">
+    🎯 Mission:
+    <strong>The World Around Us</strong>
+  </div>
+
+</div>
+
+
+<div class="mission-title">
+
+  <div class="badge">
+    YEAR 3 • MODULE 10 MISSION
+  </div>
+
+  <h1>THE WORLD AROUND US</h1>
+
+  <p>
+    Look • Think • Build • Write
+  </p>
+
+</div>
+
+
+<div class="level-map">
+
+  <div class="level-step active" id="map1">
+    1 • WORD HUNT
+  </div>
+
+  <div class="level-step" id="map2">
+    2 • PUZZLE
+  </div>
+
+  <div class="level-step" id="map3">
+    3 • COMPLETE
+  </div>
+
+  <div class="level-step" id="map4">
+    4 • BUILD
+  </div>
+
+  <div class="level-step" id="map5">
+    5 • MY SENTENCE
+  </div>
+
+</div>
+
+
+<div class="status-box">
+
+  <div class="status-row">
+
+    <span id="statusLevel">
+      Level 1 • Question 1/10
+    </span>
+
+    <span id="statusScore">
+      ⭐ Points: 0/100
+    </span>
+
+  </div>
+
+  <div class="progress">
+    <div
+      class="progress-bar"
+      id="progressBar">
+    </div>
+  </div>
+
+</div>
+
+
+<div
+  class="quiz-card"
+  id="quizCard">
+
+  <div
+    class="level-label"
+    id="levelLabel">
+  </div>
+
+  <h2
+    class="question"
+    id="question">
+  </h2>
+
+
+  <div class="picture-frame">
+
+    <div
+      class="picture"
+      id="picture">
+    </div>
+
+    <div class="picture-label">
+      👁️ LOOK CAREFULLY AT THE PICTURE
+    </div>
+
+  </div>
+
+
+  <div
+    class="answers"
+    id="answers">
+  </div>
+
+
+  <div
+    class="feedback"
+    id="feedback">
+  </div>
+
+
+  <div
+    class="hint"
+    id="hint">
+  </div>
+
+
+  <div class="controls">
+
+    <button
+      class="hint-btn"
+      id="hintBtn"
+      onclick="showHint()">
+      💡 HINT
+    </button>
+
+    <button
+      class="next-btn"
+      id="nextBtn"
+      onclick="nextQuestion()">
+      NEXT QUESTION →
+    </button>
+
+  </div>
+
+</div>
+
+</div>
+
+
+
+<script>
+const studentName=localStorage.getItem("sentenceQuestStudentName")||"Student";
+const studentClass=localStorage.getItem("sentenceQuestStudentClass")||"-";
+document.getElementById("displayName").innerText=studentName;
+document.getElementById("displayClass").innerText=studentClass;
+
+const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycby84aD1yrCse0CKs78jKTG_bDAhA42TlsCjLJsRL3PkDEhXZadGcmu-moxorgP_IXN8/exec";
+let resultAlreadySaved=false;
+
+const baseQs=[
+["elephant","🐘","big","The elephant is big.","It is large, not small."],
+["mouse","🐭","small","The mouse is small.","It is tiny compared with an elephant."],
+["giraffe","🦒","tall","The giraffe is tall.","Think about its long legs and neck."],
+["dog","🐕","short","The dog is short.","It is not tall."],
+["cheetah","🐆","fast","The cheetah is fast.","It can move very quickly."],
+["tortoise","🐢","slow","The tortoise is slow.","It does not move quickly."],
+["elephant","🐘","heavy","The elephant is heavy.","It is difficult to lift."],
+["feather","🪶","light","The feather is light.","It is easy to lift."],
+["gorilla","🦍","strong","The gorilla is strong.","It has a lot of strength."],
+["snake","🐍","long","The snake is long.","Its body stretches a long way."]
+];
+
+const compQs=[
+["elephant","🐘","goat","🐐","bigger","The elephant is bigger than the goat."],
+["mouse","🐭","cat","🐈","smaller","The mouse is smaller than the cat."],
+["giraffe","🦒","zebra","🦓","taller","The giraffe is taller than the zebra."],
+["dog","🐕","giraffe","🦒","shorter","The dog is shorter than the giraffe."],
+["cheetah","🐆","horse","🐎","faster","The cheetah is faster than the horse."],
+["tortoise","🐢","rabbit","🐇","slower","The tortoise is slower than the rabbit."],
+["elephant","🐘","zebra","🦓","heavier","The elephant is heavier than the zebra."],
+["feather","🪶","book","📚","lighter","The feather is lighter than the book."],
+["gorilla","🦍","monkey","🐒","stronger","The gorilla is stronger than the monkey."],
+["snake","🐍","worm","🪱","longer","The snake is longer than the worm."]
+];
+
+const completeQs=[
+{items:[["elephant","🐘","big"]],q:"The elephant is ___.",a:"big",opts:["big","bigger","the biggest","small"]},
+{items:[["elephant","🐘","big"],["goat","🐐","small"]],q:"The elephant is ___ than the goat.",a:"bigger",opts:["big","bigger","the biggest","smaller"]},
+{items:[["elephant","🐘","big"],["goat","🐐","small"],["mouse","🐭","small"]],q:"The elephant is ___.",a:"the biggest",opts:["big","bigger","the biggest","biggest"]},
+{items:[["giraffe","🦒","tall"],["zebra","🦓","short"]],q:"The giraffe is ___ than the zebra.",a:"taller",opts:["tall","taller","the tallest","shorter"]},
+{items:[["giraffe","🦒","tall"],["zebra","🦓","short"],["dog","🐕","short"]],q:"The giraffe is ___.",a:"the tallest",opts:["tall","taller","the tallest","tallest"]},
+{items:[["cheetah","🐆","fast"],["tortoise","🐢","slow"]],q:"The cheetah is ___ than the tortoise.",a:"faster",opts:["fast","faster","the fastest","slower"]},
+{items:[["cheetah","🐆","fast"],["horse","🐎","fast"],["tortoise","🐢","slow"]],q:"The cheetah is ___.",a:"the fastest",opts:["fast","faster","the fastest","fastest"]},
+{items:[["elephant","🐘","big"],["zebra","🦓","small"]],q:"The elephant is ___ than the zebra.",a:"heavier",opts:["heavy","heavier","the heaviest","lighter"]},
+{items:[["A","👍","good"],["B","🙂","good"],["C","😐","bad"]],q:"A is ___.",a:"the best",opts:["good","better","the best","best"]},
+{items:[["A","😊","good"],["B","😐","bad"],["C","👎","bad"]],q:"C is ___.",a:"the worst",opts:["bad","worse","the worst","worst"]}
+];
+
+const pictureQs=[
+["elephant","🐘","goat","🐐","The elephant is bigger than the goat."],
+["mouse","🐭","cat","🐈","The mouse is smaller than the cat."],
+["giraffe","🦒","zebra","🦓","The giraffe is taller than the zebra."],
+["cheetah","🐆","tortoise","🐢","The cheetah is faster than the tortoise."],
+["feather","🪶","book","📚","The feather is lighter than the book."],
+["gorilla","🦍","monkey","🐒","The gorilla is stronger than the monkey."],
+["elephant","🐘","goat","🐐","The elephant is the biggest.","mouse","🐭"],
+["giraffe","🦒","zebra","🦓","The giraffe is the tallest.","dog","🐕"],
+["cheetah","🐆","horse","🐎","The cheetah is the fastest.","tortoise","🐢"],
+["snake","🐍","worm","🪱","The snake is the longest.","caterpillar","🐛"]
+];
+
+const writeQs=[
+["elephant","🐘","goat","🐐","The elephant is bigger than the goat."],
+["mouse","🐭","cat","🐈","The mouse is smaller than the cat."],
+["giraffe","🦒","zebra","🦓","The giraffe is taller than the zebra."],
+["tortoise","🐢","rabbit","🐇","The tortoise is slower than the rabbit."],
+["elephant","🐘","zebra","🦓","The elephant is heavier than the zebra."],
+["gorilla","🦍","monkey","🐒","The gorilla is stronger than the monkey."],
+["elephant","🐘","goat","🐐","The elephant is the biggest.","mouse","🐭"],
+["giraffe","🦒","zebra","🦓","The giraffe is the tallest.","dog","🐕"],
+["cheetah","🐆","horse","🐎","The cheetah is the fastest.","tortoise","🐢"],
+["snake","🐍","worm","🪱","The snake is the longest.","caterpillar","🐛"]
+];
+
+let level=0,index=0,score=0,questionAttempts=0,hints=0,totalWrongAttempts=0;
+let levelScores=[0,0,0,0,0],levelHints=[0,0,0,0,0],levelSupport=[0,0,0,0,0];
+const levelNames=["WORD HUNT","SENTENCE PUZZLE","COMPLETE IT!","PICTURE BUILDER","MY SENTENCE"];
+
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function normalize(t){return String(t).toLowerCase().trim().replace(/[.!?]/g,"").replace(/\s+/g," ")}
+
+function visual(items){
+ document.getElementById("picture").innerHTML=`<div class="world-scene">${
+ items.map(x=>`<div class="world-item ${x[2]==="big"?"size-big":x[2]==="small"?"size-small":x[2]==="tall"?"size-tall":x[2]==="short"?"size-short":""}">
+ <div class="world-emoji">${x[1]}</div><div class="world-label">${x[0]}</div></div>`).join("")
+ }</div>`;
+}
+
+function loadQuestion(){
+ questionAttempts=0;resetUI();updateStatus();
+ document.getElementById("levelLabel").innerText=`LEVEL ${level+1} • ${levelNames[level]}`;
+ if(level===0) load1(); else if(level===1) load2(); else if(level===2) load3(); else if(level===3) load4(); else load5();
+}
+
+function load1(){
+ const d=baseQs[index]; visual([[d[0],d[1],d[2]]]);
+ document.getElementById("question").innerText=d[3].replace(d[2],"_____");
+ const all=baseQs.map(x=>x[2]); const wrong=shuffle(all.filter(x=>x!==d[2])).slice(0,3);
+ createOptions(shuffle([d[2],...wrong]),d[2]);
+}
+function load2(){
+ const d=compQs[index];visual([[d[0],d[1],index===0?"big":index===1?"small":index===2?"tall":""],[d[2],d[3],""]]);
+ document.getElementById("question").innerText="Which sentence is in the correct order?";
+ const correct=d[5];
+ const p=[`The ${d[0]}`,"is",d[4],`than the ${d[2]}.`];
+ const wrong1=`${d[4]} The ${d[0]} is than the ${d[2]}.`;
+ const wrong2=`The ${d[0]} than the ${d[2]} is ${d[4]}.`;
+ const wrong3=`The ${d[2]} is ${d[4]} than the ${d[0]}.`;
+ createOptions(shuffle([correct,wrong1,wrong2,wrong3]),correct);
+}
+function load3(){
+ const d=completeQs[index];visual(d.items);
+ document.getElementById("question").innerText=d.q;createOptions(shuffle(d.opts),d.a);
+}
+function load4(){
+ const d=pictureQs[index];let items=[[d[0],d[1],index===0?"big":index===1?"small":index===2?"tall":""],[d[2],d[3],""]];
+ if(d[5]) items.push([d[5],d[6],"small"]); visual(items);
+ document.getElementById("question").innerText="Choose the best sentence for the picture.";
+ const correct=d[4];
+ let wrong=[];
+ if(correct.includes("the biggest")) wrong=[`The ${d[0]} is big.`,`The ${d[0]} is bigger than the ${d[2]}.`,`The ${d[2]} is the biggest.`];
+ else if(correct.includes("the tallest")) wrong=[`The ${d[0]} is tall.`,`The ${d[0]} is taller than the ${d[2]}.`,`The ${d[2]} is the tallest.`];
+ else if(correct.includes("the fastest")) wrong=[`The ${d[0]} is fast.`,`The ${d[0]} is faster than the ${d[2]}.`,`The ${d[2]} is the fastest.`];
+ else if(correct.includes("the longest")) wrong=[`The ${d[0]} is long.`,`The ${d[0]} is longer than the ${d[2]}.`,`The ${d[2]} is the longest.`];
+ else {
+   const adj=correct.match(/ is ([a-z]+) than/)?.[1]||"bigger";
+   wrong=[`The ${d[0]} is ${adj.replace(/er$/,"")} .`,`The ${d[2]} is ${adj} than the ${d[0]}.`,`The ${d[0]} is the ${adj}.`];
+ }
+ createOptions(shuffle([correct,...wrong]),correct);
+}
+function load5(){
+ const d=writeQs[index];let items=[[d[0],d[1],index===0?"big":index===1?"small":index===2?"tall":""],[d[2],d[3],""]];
+ if(d[5]) items.push([d[5],d[6],"small"]);visual(items);
+ document.getElementById("question").innerText="Look at the picture. Write one complete sentence.";
+ document.getElementById("answers").innerHTML=`<div class="write-box"><textarea id="studentSentence" placeholder="Write your sentence here..."></textarea>
+ <button class="check-btn" id="checkWritingBtn" onclick="checkWriting()">CHECK MY SENTENCE</button>
+ <div class="small-note">Use an adjective, comparative or superlative form.</div></div>`;
+}
+function createOptions(options,correct){
+ const area=document.getElementById("answers");area.innerHTML="";
+ options.forEach(o=>{const b=document.createElement("button");b.className="answer";b.innerText=o;b.onclick=()=>checkOption(b,o,correct);area.appendChild(b)});
+}
+function checkOption(button,selected,correct){
+ questionAttempts++;
+ if(selected===correct){
+  button.classList.add("correct");const pts=questionAttempts===1?2:1;score+=pts;levelScores[level]+=pts;disableAnswers();
+  feedback(pts===2?"⭐ Excellent! Correct on your first try!":"👍 Well done! You found the correct answer.","good");showNext();updateScore();
+ }else{
+  totalWrongAttempts++;button.classList.add("wrong");button.disabled=true;
+  if(questionAttempts===1){feedback("Good try! Look carefully at the picture and compare again.","bad");showHint();}
+  else{levelSupport[level]++;revealCorrectAnswer(correct);feedback(`💡 <b>Let's learn!</b><br>The correct answer is:<br><br><b>${correct}</b>`,"learn");disableAnswers();showNext();}
+ }
+}
+function checkWriting(){
+ const ta=document.getElementById("studentSentence"),answer=normalize(ta.value);if(!answer){feedback("Write a sentence first.","bad");return}
+ questionAttempts++;const correct=normalize(writeQs[index][4]);
+ if(answer===correct){
+  const pts=questionAttempts===1?2:1;score+=pts;levelScores[level]+=pts;feedback(pts===2?"🏆 Fantastic! You wrote the sentence independently!":"👍 Great! Your sentence is correct.","good");
+  ta.disabled=true;document.getElementById("checkWritingBtn").disabled=true;showNext();updateScore();
+ }else{
+  totalWrongAttempts++;
+  if(questionAttempts===1){feedback("Good try! Check the adjective form and sentence pattern. Try once more.","bad");showHint();}
+  else{levelSupport[level]++;feedback(`💡 <b>Suggested sentence:</b><br><br><b>${writeQs[index][4]}</b>`,"learn");ta.disabled=true;document.getElementById("checkWritingBtn").disabled=true;showNext();}
+ }
+}
+function showHint(){
+ const h=document.getElementById("hint");if(h.style.display!=="block"){hints++;levelHints[level]++}h.style.display="block";
+ if(level===0)h.innerText=baseQs[index][4];
+ else if(level===1)h.innerText="Compare TWO things: noun + is + comparative adjective + than + noun.";
+ else if(level===2)h.innerText="One: adjective. Two: comparative. Three or more: the + superlative.";
+ else if(level===3)h.innerText="Look at how many things are shown and compare their size, height, speed, weight or strength.";
+ else h.innerText="For two things, use comparative + than. For three or more, use the + superlative.";
+ document.getElementById("hintBtn").style.display="none";
+}
+function nextQuestion(){
+ if(index<9)index++;else{document.getElementById("map"+(level+1)).classList.remove("active");document.getElementById("map"+(level+1)).classList.add("done");
+ if(level<4){level++;index=0;document.getElementById("map"+(level+1)).classList.add("active")}else{showResult();return}}
+ loadQuestion();window.scrollTo({top:0,behavior:"smooth"});
+}
+function updateStatus(){document.getElementById("statusLevel").innerText=`Level ${level+1} • Question ${index+1}/10`;document.getElementById("progressBar").style.width=Math.max(2,((level*10+index)/50)*100)+"%"}
+function updateScore(){document.getElementById("statusScore").innerText=`⭐ Points: ${score}/100`}
+function resetUI(){const f=document.getElementById("feedback");f.className="feedback";f.innerHTML="";document.getElementById("hint").style.display="none";document.getElementById("hintBtn").style.display="block";document.getElementById("nextBtn").style.display="none"}
+function disableAnswers(){document.querySelectorAll(".answer").forEach(b=>b.disabled=true)}
+function revealCorrectAnswer(c){document.querySelectorAll(".answer").forEach(b=>{if(b.innerText.trim()===c.trim())b.classList.add("correct")})}
+function showNext(){document.getElementById("nextBtn").style.display="block"}
+function feedback(t,c){const f=document.getElementById("feedback");f.className="feedback "+c;f.innerHTML=t}
+
+function showResult(){
+ const percentage=Math.round(score);let masteryClass,masteryText;
+ if(percentage>=80&&hints<=10){masteryClass="mastered";masteryText="INDEPENDENT"}else if(percentage>=50){masteryClass="developing";masteryText="DEVELOPING"}else{masteryClass="support";masteryText="NEEDS SUPPORT"}
+ const display=masteryText==="INDEPENDENT"?"⭐ INDEPENDENT":masteryText==="DEVELOPING"?"🟡 DEVELOPING":"🔴 NEEDS SUPPORT";
+ document.getElementById("quizCard").innerHTML=`<div class="result"><div class="trophy">🏆</div><h1>MISSION COMPLETE!</h1>
+ <p>The World Around Us • Module 10 • Year 3</p>
+ <div class="student-result"><div class="student-result-row"><span>Student</span><strong>${studentName}</strong></div><div class="student-result-row"><span>Class</span><strong>${studentClass}</strong></div><div class="student-result-row"><span>Mission</span><strong>The World Around Us</strong></div></div>
+ <div class="total-score">${score} / 100</div><div class="percentage">${percentage}%</div><div class="mastery ${masteryClass}">${display}</div>
+ <table class="result-table"><tr><th>Skill</th><th>Points</th><th>Hints</th><th>Support</th></tr>
+ ${levelNames.map((n,i)=>`<tr><td>${n}</td><td>${levelScores[i]}/20</td><td>${levelHints[i]}</td><td>${levelSupport[i]}</td></tr>`).join("")}</table>
+ <p>Hints Used: <b>${hints}</b> &nbsp; • &nbsp; Wrong Attempts: <b>${totalWrongAttempts}</b></p>
+ <div class="save-status" id="saveStatus">⏳ Saving your result...</div><button class="return-btn" onclick="goBack()">BACK TO YEAR 3 MISSIONS</button></div>`;
+ saveResult(masteryText);
+}
+function saveResult(masteryText){
+ if(resultAlreadySaved)return;resultAlreadySaved=true;
+ const d={studentName,studentClass,year:"Year 3",topic:"The World Around Us",totalScore:score,percentage:Math.round(score),masteryLevel:masteryText,hintsUsed:hints,wrongAttempts:totalWrongAttempts,wordHunt:levelScores[0],sentencePuzzle:levelScores[1],completeIt:levelScores[2],pictureBuilder:levelScores[3],mySentence:levelScores[4]};
+ fetch(GOOGLE_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(d)})
+ .then(r=>r.json()).then(data=>{const s=document.getElementById("saveStatus");if(data.status==="success"){s.innerHTML="✅ Your result has been saved successfully.";s.style.background="#dcfce7";s.style.color="#166534"}else{resultAlreadySaved=false;s.innerHTML="⚠️ Your result could not be saved."}})
+ .catch(()=>{resultAlreadySaved=false;const s=document.getElementById("saveStatus");if(s)s.innerHTML="⚠️ Your result could not be saved."});
+}
+function goBack(){window.location.href="year3.html"}
+loadQuestion();
+</script>
+</body>
+</html>
