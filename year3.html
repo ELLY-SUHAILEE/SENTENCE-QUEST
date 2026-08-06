@@ -458,7 +458,7 @@ footer{
   </h2>
 
   <p>
-    Start with Prepositions or My Day. More missions will be added soon.
+    Choose Prepositions, My Day or The World Around Us. More missions will be added soon.
   </p>
 
 </div>
@@ -508,12 +508,12 @@ footer{
 </div>
 
 
-<!-- 02 ADJECTIVES -->
+<!-- 02 THE WORLD AROUND US -->
 
 <div class="mission">
 
-  <div class="soon-label">
-    COMING SOON
+  <div class="ready-label">
+    READY ✓
   </div>
 
   <div class="visual v2">
@@ -527,21 +527,21 @@ footer{
     </div>
 
     <h3>
-      Adjectives
+      The World Around Us
     </h3>
 
     <p class="description">
-      Use describing words to make sentences more interesting.
+      Learn adjectives, comparatives and superlatives from Module 10.
     </p>
 
     <div class="example">
-      The giraffe is tall.
+      The giraffe is taller than the zebra.
     </div>
 
     <button
-      class="start-btn coming-btn"
-      onclick="comingSoon('Adjectives')">
-      COMING SOON
+      class="start-btn login-btn"
+      onclick="studentLoginWorld()">
+      👤 STUDENT LOGIN →
     </button>
 
   </div>
@@ -987,6 +987,38 @@ function studentLoginMyDay(){
   localStorage.setItem(
     "sentenceQuestMission",
     "My Day"
+  );
+
+  window.location.href =
+  "student.html";
+
+}
+
+
+/* ==============================
+   STUDENT LOGIN
+
+   THE WORLD AROUND US
+================================ */
+
+function studentLoginWorld(){
+
+  localStorage.removeItem(
+    "sentenceQuestStudentName"
+  );
+
+  localStorage.removeItem(
+    "sentenceQuestStudentClass"
+  );
+
+  localStorage.setItem(
+    "sentenceQuestYear",
+    "3"
+  );
+
+  localStorage.setItem(
+    "sentenceQuestMission",
+    "The World Around Us"
   );
 
   window.location.href =
