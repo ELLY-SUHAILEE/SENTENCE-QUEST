@@ -562,7 +562,7 @@ input::placeholder{
             Mission
           </span>
 
-          <span class="info-value">
+          <span class="info-value" id="missionName">
             Prepositions
           </span>
 
@@ -660,6 +660,21 @@ input::placeholder{
 <script>
 
 /* =========================
+   SHOW SELECTED MISSION
+========================= */
+
+const selectedMission =
+  localStorage.getItem(
+    "sentenceQuestMission"
+  ) || "Prepositions";
+
+document
+  .getElementById("missionName")
+  .innerText =
+  selectedMission;
+
+
+/* =========================
    START MISSION
 ========================= */
 
@@ -724,18 +739,28 @@ function startMission(){
   );
 
 
-  localStorage.setItem(
-    "sentenceQuestMission",
-    "Prepositions"
-  );
+  const selectedMission =
+    localStorage.getItem(
+      "sentenceQuestMission"
+    ) || "Prepositions";
 
 
   /* =========================
-     OPEN QUIZ
+     OPEN SELECTED MISSION
   ========================= */
 
-  window.location.href =
-    "quiz.html?year=3&mission=prepositions";
+  if(selectedMission === "My Day"){
+
+    window.location.href =
+      "myday.html";
+
+  }
+  else{
+
+    window.location.href =
+      "quiz.html?year=3&mission=prepositions";
+
+  }
 
 }
 
