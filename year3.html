@@ -458,7 +458,7 @@ footer{
   </h2>
 
   <p>
-    Start with Prepositions. More missions will be added soon.
+    Start with Prepositions or My Day. More missions will be added soon.
   </p>
 
 </div>
@@ -594,16 +594,16 @@ footer{
 </div>
 
 
-<!-- 04 TIME -->
+<!-- 04 MY DAY -->
 
 <div class="mission">
 
-  <div class="soon-label">
-    COMING SOON
+  <div class="ready-label">
+    READY ✓
   </div>
 
   <div class="visual v4">
-    🕘 ⏰
+    🕘 🎒
   </div>
 
   <div class="mission-content">
@@ -613,21 +613,21 @@ footer{
     </div>
 
     <h3>
-      Time
+      My Day
     </h3>
 
     <p class="description">
-      Talk about time and daily activities.
+      Learn daily routines and tell the time in complete sentences.
     </p>
 
     <div class="example">
-      I go to school at seven o'clock.
+      Siti goes to school at quarter to eight.
     </div>
 
     <button
-      class="start-btn coming-btn"
-      onclick="comingSoon('Time')">
-      COMING SOON
+      class="start-btn login-btn"
+      onclick="studentLoginMyDay()">
+      👤 STUDENT LOGIN →
     </button>
 
   </div>
@@ -956,6 +956,38 @@ function studentLogin(){
     IMPORTANT:
     OPEN STUDENT.HTML
   */
+
+  window.location.href =
+  "student.html";
+
+}
+
+
+/* ==============================
+   STUDENT LOGIN
+
+   MY DAY
+================================ */
+
+function studentLoginMyDay(){
+
+  localStorage.removeItem(
+    "sentenceQuestStudentName"
+  );
+
+  localStorage.removeItem(
+    "sentenceQuestStudentClass"
+  );
+
+  localStorage.setItem(
+    "sentenceQuestYear",
+    "3"
+  );
+
+  localStorage.setItem(
+    "sentenceQuestMission",
+    "My Day"
+  );
 
   window.location.href =
   "student.html";
