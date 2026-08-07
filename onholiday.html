@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SEQS | On Holiday</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#1565c0,#42a5f5);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.container{
+width:100%;
+max-width:900px;
+background:white;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+overflow:hidden;
+}
+
+.header{
+
+background:linear-gradient(135deg,#0d47a1,#1976d2);
+
+color:white;
+
+text-align:center;
+
+padding:35px;
+
+}
+
+.header h1{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+.header h2{
+
+font-size:20px;
+
+font-weight:400;
+
+}
+
+.content{
+
+padding:40px;
+
+}
+
+.infoBox{
+
+background:#f5f8ff;
+
+padding:25px;
+
+border-radius:15px;
+
+margin-bottom:30px;
+
+}
+
+.infoBox h3{
+
+color:#1565c0;
+
+margin-bottom:20px;
+
+}
+
+label{
+
+font-weight:600;
+
+display:block;
+
+margin-top:18px;
+
+margin-bottom:8px;
+
+}
+
+input,select{
+
+width:100%;
+
+padding:14px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+font-size:16px;
+
+}
+
+.instructions{
+
+background:#fff8e1;
+
+border-left:6px solid orange;
+
+padding:20px;
+
+border-radius:10px;
+
+margin-top:30px;
+
+}
+
+.instructions h3{
+
+margin-bottom:12px;
+
+color:#ef6c00;
+
+}
+
+.instructions ul{
+
+margin-left:20px;
+
+line-height:1.9;
+
+}
+
+.startBtn{
+
+margin-top:35px;
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:12px;
+
+background:#1565c0;
+
+color:white;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.startBtn:hover{
+
+background:#0d47a1;
+
+transform:scale(1.02);
+
+}
+
+#quizSection{
+
+display:none;
+
+padding:40px;
+
+}
+
+.studentInfo{
+
+display:flex;
+
+justify-content:space-between;
+
+flex-wrap:wrap;
+
+background:#e3f2fd;
+
+padding:18px;
+
+border-radius:10px;
+
+margin-bottom:25px;
+
+font-weight:600;
+
+}
+
+.footer{
+
+text-align:center;
+
+padding:18px;
+
+background:#f1f1f1;
+
+font-size:14px;
+
+color:#555;
+
+}
+
+@media(max-width:700px){
+
+.content{
+
+padding:25px;
+
+}
+
+.header h1{
+
+font-size:26px;
+
+}
+
+.header h2{
+
+font-size:17px;
+
+}
+
+.studentInfo{
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>SEQS</h1>
+
+<h2>SMART ENGLISH QUIZ SYSTEM</h2>
+
+<h2>Topic : On Holiday</h2>
+
+</div>
+
+<div class="content" id="startPage">
+
+<div class="infoBox">
+
+<h3>Student Information</h3>
+
+<label>Student Name</label>
+
+<input type="text" id="studentName" placeholder="Enter your full name">
+
+<label>Class</label>
+
+<select id="studentClass">
+
+<option value="">-- Select Class --</option>
+
+<option>3 Amanah</option>
+
+<option>3 Bestari</option>
+
+<option>3 Cemerlang</option>
+
+<option>3 Dinamik</option>
+
+<option>3 Efisien</option>
+
+<option>3 Fikrah</option>
+
+</select>
+
+<button class="startBtn" onclick="startQuiz()">
+
+START QUIZ
+
+</button>
+
+</div>
+
+<div class="instructions">
+
+<h3>Instructions</h3>
+
+<ul>
+
+<li>Answer all questions.</li>
+
+<li>Choose ONE correct answer.</li>
+
+<li>Do not refresh the page.</li>
+
+<li>Click Submit after finishing.</li>
+
+<li>Your score will be recorded automatically.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div id="quizSection">
+
+<div class="studentInfo">
+
+<div>Name :
+<span id="showName"></span>
+</div>
+
+<div>Class :
+<span id="showClass"></span>
+</div>
+
+</div>
+
+<!-- Questions will be added in Part 2 -->
+
+<div id="questionContainer">
+
+<h2 style="text-align:center;color:#1565c0">
+
+Questions will appear here...
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+SEQS Smart English Quiz System © 2026
+
+</div>
+
+</div>
+
+<script>
+
+function startQuiz(){
+
+let name=document.getElementById("studentName").value.trim();
+
+let kelas=document.getElementById("studentClass").value;
+
+if(name==""||kelas==""){
+
+alert("Please enter your name and class.");
+
+return;
+
+}
+
+document.getElementById("showName").innerHTML=name;
+
+document.getElementById("showClass").innerHTML=kelas;
+
+document.getElementById("startPage").style.display="none";
+
+document.getElementById("quizSection").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+</script>
+
+</body>
+</html>
